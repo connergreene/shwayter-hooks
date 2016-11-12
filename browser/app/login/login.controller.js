@@ -6,8 +6,7 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
     //grab user data via ng-model
     Auth.login($scope.userData)
     .then(function(){
-      // transition to stories state 
-      //$state.go('stories')
+      //$state.go
     }, function(){
       // clear form 
       $scope.userData = {}

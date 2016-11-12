@@ -18,12 +18,6 @@ app.factory('Auth', function ($http, $rootScope) {
       .then(extractData)
       .then(setCurrentUser)
     }, 
-    signup: function(creds){
-      return $http.post('/auth/signup', creds)
-      .then(extractData)
-      .then(setCurrentUser)
-    }, 
-
     logout: function(){
       return $http.get('/auth/logout')
       .then(function(){
