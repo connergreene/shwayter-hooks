@@ -5,7 +5,7 @@ var path = require('path');
 var User = require('../api/users/user.model');
 var request = require('request');
 var bodyParser = require('body-parser')
-//var config = require('../../config/config.json');
+var config = require('../config/config.json');
 var passport = require('passport'); 
 
 var session = require('express-session'); 
