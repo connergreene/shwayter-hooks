@@ -58,7 +58,10 @@ app.use(function(req, res, next){
 //     'Content-Type': 'application/json'
 //   }
 // };
+var signatureKey = process.env['signatureKey'];
+var accessToken = process.env['accessToken'];
 
+console.log('access token', accessToken);
 
 app.get('/orders', function(req, res) {
   request(options, function(error, response, body){
