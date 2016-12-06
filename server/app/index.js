@@ -79,6 +79,7 @@ app.use('/api', require('../api/api.router'));
 
 var validFrontendRoutes = ['/', '/users', '/users/:id', '/login'];
 var indexPath = path.join(__dirname, '..', '..', 'public', 'index.html');
+console.log(indexPath);
 validFrontendRoutes.forEach(function (stateRoute) {
   app.get(stateRoute, function (req, res) {
     res.sendFile(indexPath);
