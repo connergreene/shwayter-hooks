@@ -76,7 +76,7 @@ request.get(options2, function(error, res){
 
 app.get('/orders', function(req, res, next){
 
-  console.log("does this get orders?    ", req.body)
+  console.log("does this get orders?    ", req)
 
 });
 
