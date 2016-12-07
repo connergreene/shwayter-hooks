@@ -74,6 +74,11 @@ request.get(options2, function(error, res){
     }
 });
 
+app.get('/orders', function(req, res, next){
+  console.log("does this get orders?    ", res)
+
+});
+
 app.use(require('./statics.middleware'));
  
 app.use('/auth', require('../auth/auth.router'));
