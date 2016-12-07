@@ -4,10 +4,9 @@ var app = require('express')();
 var path = require('path');
 var User = require('../api/users/user.model');
 var request = require('request');
-var bodyParser = require('body-parser')
-
+var bodyParser = require('body-parser');
+var _ = require('lodash');
 var passport = require('passport'); 
-
 var session = require('express-session'); 
 
 app.use(require('./logging.middleware'));
@@ -45,30 +44,35 @@ app.use(function(req, res, next){
   next(); 
 })
 
-
-// var options = {
-//   url: 'http://shway.requestcatcher.com/'
-// };
-
-// var options = {
-//   url: 'https://connect.squareup.com/v1/me/payments/',
-//   headers: {
-//     'Authorization': 'Bearer config.accessToken',
-//     'X-Square-Signature': 'config.signatureKey',
-//     'Content-Type': 'application/json'
-//   }
-// };
-var signatureKey = process.env['signatureKey'];
-var accessToken = process.env['accessToken'];
-
-console.log('access token', accessToken);
-
-app.get('/orders', function(req, res) {
-  request(options, function(error, response, body){
-    res.send(body);
-  })
+//starting web hooks
+var headers = {
+    Authorization: 'Bearer ' + 'xxxxx',
+    Accept: 'application/json',
+};
+var options = {
+    url: 'https://connect.squareup.com/v1/me/webhooks',
+    headers: headers
+}
+request(options, function(error, res, body) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(res);
+    }
 });
 
+var options2 = {
+  url: 'https://connect.squareup.com/v1/me/payments?order=DESC',
+  headers: headers
+}
+request.get(options2, function(error, res){
+    if (error) {
+        console.log(error);
+    } 
+    else {
+      console.log("this is a thing!  ", res.data);
+    }
+});
 
 app.use(require('./statics.middleware'));
  
