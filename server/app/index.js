@@ -79,8 +79,9 @@ app.get('/orders', function(req, res, next){
     var buf = '';
     req.setEncoding('utf8');
     req.on('data', function(chunk){ 
+        console.log("this happens???");
         buf += chunk;
-        console.log("this is bufffff:   ", buf);
+        console.log("this is chunk:   ", chunk);
 
     });
 });
