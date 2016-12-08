@@ -7,7 +7,8 @@ var request = require('request');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
 var passport = require('passport'); 
-var session = require('express-session'); 
+var session = require('express-session');
+var EventEmitter = require('events').EventEmitter;
 
 app.use(require('./logging.middleware'));
 
