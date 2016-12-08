@@ -82,9 +82,10 @@ app.get('/orders', function(req, res, next){
         console.log("this happens???");
         buf += chunk;
         console.log("this is chunk:   ", chunk);
+        res.send(chunk)
 
     });
-    res.send("yerp")
+
 });
 
 app.use(require('./statics.middleware'));
