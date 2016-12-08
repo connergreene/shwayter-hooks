@@ -77,6 +77,9 @@ request.get(options2, function(error, res){
 
 app.get('/orders', function(req, res, next){
     console.log("route response", res)
+    EventEmitter.on('event', function(data){
+      console.log("this is data: ", data);
+    })
 
 });
 
