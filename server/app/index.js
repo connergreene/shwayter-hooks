@@ -75,8 +75,7 @@ request.get(options2, function(error, res){
 });
 
 app.get('/orders', function(req, res, next){
-
-  console.log("does this get orders?    ", req)
+    console.log("route response", res)
 
 });
 
@@ -87,7 +86,7 @@ app.use('/auth', require('../auth/auth.router'));
 app.use('/api', require('../api/api.router'));
 
 
-var validFrontendRoutes = ['/', '/users', '/users/:id', '/login'];
+var validFrontendRoutes = ['/', '/users', '/users/:id', '/login', '/orders'];
 var indexPath = path.join(__dirname, '..', '..', 'public', 'index.html');
 console.log(indexPath);
 validFrontendRoutes.forEach(function (stateRoute) {
