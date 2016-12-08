@@ -76,11 +76,13 @@ request.get(options2, function(error, res){
 });
 
 app.get('/orders', function(req, res, next){
-    console.log("route response", res)
-    EventEmitter.on('event', function(data){
-      console.log("this is data: ", data);
-    })
+    var buf = '';
+    req.setEncoding('utf8');
+    req.on('data', function(chunk){ 
+        buf += chunk;
+        console.log("this is bufffff:   ", buf);
 
+    });
 });
 
 app.use(require('./statics.middleware'));
