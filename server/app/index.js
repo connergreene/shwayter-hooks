@@ -78,7 +78,7 @@ request.get(options2, function(error, res){
     }
 });
 
-app.post('/orders', function(req, res, next){
+app.get('/orders', function(req, res, next){
     // var buf = '';
     // req.setEncoding('utf8');
     // req.on('data', function(chunk){ 
