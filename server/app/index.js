@@ -47,8 +47,8 @@ app.use(function(req, res, next){
 
 //starting web hooks
 var headers = {
-    Authorization: 'Bearer ' + 'sq0idp-XTSSg-ot1R6ueeEXEs3lzw',
-    Content-Type: 'application/json'
+    'Authorization' : 'Bearer ' + 'sq0idp-XTSSg-ot1R6ueeEXEs3lzw',
+    'Content-Type' : 'application/json'
 };
 var options = {
     url: 'https://connect.squareup.com/v1/me/webhooks',
