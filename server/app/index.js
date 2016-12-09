@@ -75,16 +75,18 @@ request.get(options2, function(error, res){
     }
 });
 
-app.get('/orders', function(req, res, next){
-    var buf = '';
-    req.setEncoding('utf8');
-    req.on('data', function(chunk){ 
-        console.log("this happens???");
-        buf += chunk;
-        console.log("this is chunk:   ", chunk);
+app.post('/orders', function(req, res, next){
+    // var buf = '';
+    // req.setEncoding('utf8');
+    // req.on('data', function(chunk){ 
+    //     console.log("this happens???");
+    //     buf += chunk;
+    //     console.log("this is chunk:   ", chunk);
 
-    });
-    res.send(buf)
+    // });
+    // res.send(buf)
+    console.log("adam zerner sucks at ping pong")
+    res.send("hello");
 });
 
 app.use(require('./statics.middleware'));

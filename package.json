@@ -27,7 +27,8 @@
     "passport-google-oauth": "^0.2.0",
     "path": "^0.12.7",
     "request": "^2.75.0",
-    "shortid": "^2.2.2"
+    "shortid": "^2.2.2",
+    "socket.io": "^1.7.1"
   },
   "devDependencies": {
     "chance": "^0.8.0",
