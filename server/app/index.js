@@ -50,6 +50,8 @@ var headers = {
     Authorization : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
     Accept : 'application/json'
 };
+
+var postData = {"event_types" : ["PAYMENT_UPDATED"]};
 var options = {
     url: 'https://connect.squareup.com/v1/me/webhooks',
     headers: {
@@ -57,7 +59,7 @@ var options = {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    body: {"event_types": ["PAYMENT_UPDATED"]}
+    body: JSON.stringify(postData)
 }
 request.put(options, function(error, res, body) {
     if (error) {
