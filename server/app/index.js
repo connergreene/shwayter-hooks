@@ -61,8 +61,7 @@ var options = {
       'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
-    },
-    formData: JSON.stringify(postData)
+    }
 }
 request.put(options, function(error, res, body) {
     if (error) {
