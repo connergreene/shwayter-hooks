@@ -90,6 +90,11 @@ app.post('/orders', function(req, res, next){
 
 });
 
+app.get('/foo', function(req, res, next){
+    console.log("wfwefwefwefwef");
+    res.send("hello world");
+});
+
 app.use(require('./statics.middleware'));
  
 app.use('/auth', require('../auth/auth.router'));
