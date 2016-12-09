@@ -54,7 +54,7 @@ var options = {
     url: 'https://connect.squareup.com/v1/me/webhooks',
     headers: {
       'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
-      'Accept' : 'application/json'
+      'Content-Type' : 'application/json'
     }
 }
 request.put(options, function(error, res, body) {
