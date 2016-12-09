@@ -57,7 +57,7 @@ var options = {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    body: ["PAYMENT_UPDATED"]
+    body: {"event_types": ["PAYMENT_UPDATED"]}
 }
 request.put(options, function(error, res, body) {
     if (error) {
