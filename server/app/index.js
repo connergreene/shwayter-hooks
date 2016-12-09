@@ -85,8 +85,9 @@ app.post('/orders', function(req, res, next){
 
     // });
     // res.send(buf)
-    console.log("adam zerner sucks at ping pong")
-    res.send("hello");
+    console.log("ngknrengern")
+    res.send("bleh");
+
 });
 
 app.use(require('./statics.middleware'));
