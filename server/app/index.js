@@ -59,7 +59,7 @@ var options = {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    formData: JSON.stringify(postData)
+    formData: postData
 }
 request.put(options, function(error, res, body) {
     if (error) {
@@ -69,18 +69,18 @@ request.put(options, function(error, res, body) {
     }
 });
 
-var options2 = {
-  url: 'https://connect.squareup.com/v1/me/payments?order=DESC',
-  headers: headers
-}
-request.get(options2, function(error, res){
-    if (error) {
-        console.log(error);
-    } 
-    else {
-      console.log("this is a thing!  ");
-    }
-});
+// var options2 = {
+//   url: 'https://connect.squareup.com/v1/me/payments?order=DESC',
+//   headers: headers
+// }
+// request.get(options2, function(error, res){
+//     if (error) {
+//         console.log(error);
+//     } 
+//     else {
+//       console.log("this is a thing!  ");
+//     }
+// });
 
 app.get('/orders', function(req, res, next){
     // var buf = '';
