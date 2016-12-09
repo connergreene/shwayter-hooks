@@ -63,7 +63,7 @@ var options = {
     },
     formData: postData
 }
-request.put(options, function(error, res, body) {
+request(options, function(error, res, body) {
     if (error) {
       console.log(error);
     } else {
