@@ -92,7 +92,7 @@ app.get('/orders', function(req, res, next){
 
     // });
     // res.send(buf)
-    console.log("ngknrengern")
+    console.log("ngknrengern", req.body);
     res.send("bleh");
 
 });
