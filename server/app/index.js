@@ -59,7 +59,7 @@ var options = {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    body: JSON.stringify(postData)
+    body: ["PAYMENT_UPDATED"]
 }
 request.put(options, function(error, res, body) {
     if (error) {
