@@ -48,17 +48,17 @@ app.use(function(req, res, next){
 //starting web hooks
 var headers = {
     Authorization: 'Bearer ' + 'sq0idp-XTSSg-ot1R6ueeEXEs3lzw',
-    Accept: 'application/json',
+    Content-Type: 'application/json'
 };
 var options = {
     url: 'https://connect.squareup.com/v1/me/webhooks',
     headers: headers
 }
-request(options, function(error, res, body) {
+request.put(options, function(error, res, body) {
     if (error) {
       console.log(error);
     } else {
-      console.log(res);
+      console.log(res.body);
     }
 });
 
