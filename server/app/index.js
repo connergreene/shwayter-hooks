@@ -52,7 +52,10 @@ var headers = {
 };
 var options = {
     url: 'https://connect.squareup.com/v1/me/webhooks',
-    headers: headers
+    headers: {
+      'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
+      'Accept' : 'application/json'
+    }
 }
 request.put(options, function(error, res, body) {
     if (error) {
@@ -71,7 +74,7 @@ request.get(options2, function(error, res){
         console.log(error);
     } 
     else {
-      console.log("this is a thing!  ", res.data);
+      console.log("this is a thing!  ", res.body);
     }
 });
 
