@@ -51,7 +51,7 @@ var headers = {
     'Content-Type' : 'application/json'
 };
 var options = {
-    url: 'https://connect.squareup.com/v1/me/webhooks',
+    url: 'https://connect.squareup.com/v1/2K6DE7436RRFV/webhooks',
     headers: headers
 }
 request.put(options, function(error, res, body) {
