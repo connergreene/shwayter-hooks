@@ -59,7 +59,7 @@ var options = {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    formData: JSON.stringify(postData)
+    formData: '["PAYMENT_UPDATED"]'
 }
 request.put(options, function(error, res, body) {
     if (error) {
