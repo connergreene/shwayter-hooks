@@ -74,7 +74,7 @@ request.get(options2, function(error, res){
         console.log(error);
     } 
     else {
-      console.log("this is a thing!  ", res.body);
+      console.log("this is a thing!  ");
     }
 });
 
