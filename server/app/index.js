@@ -51,7 +51,7 @@ var headers = {
     Accept : 'application/json'
 };
 
-var postData = {"event_types" : ["PAYMENT_UPDATED"]};
+var postData = {"event_types" : '["PAYMENT_UPDATED"]'};
 var options = {
     url: 'https://connect.squareup.com/v1/me/webhooks',
     headers: {
