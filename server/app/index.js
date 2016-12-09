@@ -58,7 +58,7 @@ request(options, function(error, res, body) {
     if (error) {
       console.log(error);
     } else {
-      //console.log(res);
+      console.log(res);
     }
 });
 
