@@ -139,8 +139,8 @@ app.post('/orders', function(req, res, next){
     var location_id = callback_body_json['location_id'];
 
   // Send a request to the Retrieve Payment endpoint to get the updated payment's full details
-    response = Unirest.get CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
-                  headers: REQUEST_HEADERS
+    // response = Unirest.get CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
+    //               headers: REQUEST_HEADERS
     var newOptions = {
       url: CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
       headers: REQUEST_HEADERS
@@ -154,7 +154,7 @@ app.post('/orders', function(req, res, next){
     })
 
   // Perform an action based on the returned payment (in this case, simply log it)
-    puts JSON.pretty_generate(response.body)
+    //puts JSON.pretty_generate(response.body)
   }
   else{
     console.log("it isn't happening")
