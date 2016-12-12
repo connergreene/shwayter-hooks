@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var _ = require('lodash');
 var passport = require('passport'); 
 var session = require('express-session');
-var EventEmitter = require('events').EventEmitter;
+var base64 = require('base-64');
 
 app.use(require('./logging.middleware'));
 
@@ -84,20 +84,97 @@ request(options, function(error, res, body) {
 //     }
 // });
 
+// app.post('/orders', function(req, res, next){
+//     // var buf = '';
+//     // req.setEncoding('utf8');
+//     // req.on('data', function(chunk){ 
+//     //     console.log("this happens???");
+//     //     buf += chunk;
+//     //     console.log("this is chunk:   ", chunk);
+
+//     // });
+//     // res.send(buf)
+//     console.log("ngknrengern", req.body);
+//     res.send("bleh");
+
+// });
+
+var ACCESS_TOKEN = 'sq0atp-prCX8XFu_3QLtK8j-seeaA'
+
+//var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
+
+var WEBHOOK_URL = 'https://shwayter-hooks.herokuapp.com/orders'
+
+var CONNECT_HOST = 'https://connect.squareup.com'
+
+var REQUEST_HEADERS = { 'Authorization' : 'Bearer ' + ACCESS_TOKEN,
+                     'Accept' : 'application/json',
+                     'Content-Type' : 'application/json'}
+
+
 app.post('/orders', function(req, res, next){
-    // var buf = '';
-    // req.setEncoding('utf8');
-    // req.on('data', function(chunk){ 
-    //     console.log("this happens???");
-    //     buf += chunk;
-    //     console.log("this is chunk:   ", chunk);
+  
+// Get the JSON body and HMAC-SHA1 signature of the incoming POST request
+  var callback_body = req.body;
+  var callback_signature = req.env['HTTP_X_SQUARE_SIGNATURE'];
 
-    // });
-    // res.send(buf)
-    console.log("ngknrengern", req.body);
-    res.send("bleh");
+// // Validate the signature
+//   if not is_valid_callback(callback_body, callback_signature)
 
-});
+//   // Fail if the signature is invalid
+//     puts 'Webhook event with invalid signature detected!'
+//     return
+//   end
+
+// Load the JSON body into a hash
+  var callback_body_json = JSON.parse(callback_body)
+
+// If the notification indicates a PAYMENT_UPDATED event...
+  if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'PAYMENT_UPDATED'){
+
+  // Get the ID of the updated payment
+    var payment_id = callback_body_json['entity_id'];
+
+  // Get the ID of the payment's associated location
+    var location_id = callback_body_json['location_id'];
+
+  // Send a request to the Retrieve Payment endpoint to get the updated payment's full details
+    response = Unirest.get CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
+                  headers: REQUEST_HEADERS
+    var newOptions = {
+      url: CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
+      headers: REQUEST_HEADERS
+    };
+
+    request(newOptions, function(e, r, body){
+          if (e) {
+            return console.error('upload failed:', e);
+          }
+        console.log("it actually happened", body)
+    })
+
+  // Perform an action based on the returned payment (in this case, simply log it)
+    puts JSON.pretty_generate(response.body)
+  }
+  else{
+    console.log("it isn't happening")
+  }
+}
+
+
+// // Validates HMAC-SHA1 signatures included in webhook notifications to ensure notifications came from Square
+// var is_valid_callback(callback_body, callback_signature){
+  
+// // Combine your webhook notification URL and the JSON body of the incoming request into a single string
+//   var string_to_sign = WEBHOOK_URL + callback_body
+
+// // Generate the HMAC-SHA1 signature of the string, signed with your webhook signature key
+//   var string_signature = Base64.strict_encode64(OpenSSL::HMAC.digest('sha1', WEBHOOK_SIGNATURE_KEY, string_to_sign))
+
+// // Hash the signatures a second time (to protect against timing attacks)
+// // and compare them
+//   return Digest::SHA1.base64digest(string_signature) == Digest::SHA1.base64digest(callback_signature)
+// }
 
 app.get('/foo', function(req, res, next){
     console.log("wfwefwefwefwef");
