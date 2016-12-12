@@ -84,7 +84,7 @@ request(options, function(error, res, body) {
 //     }
 // });
 
-app.get('/orders', function(req, res, next){
+app.post('/orders', function(req, res, next){
     // var buf = '';
     // req.setEncoding('utf8');
     // req.on('data', function(chunk){ 
