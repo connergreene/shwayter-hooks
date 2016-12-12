@@ -44,7 +44,6 @@ app.use(function(req, res, next){
   next(); 
 })
 
-starting web hooks
 var headers = {
     Authorization : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
     Accept : 'application/json'
