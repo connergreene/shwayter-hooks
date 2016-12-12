@@ -159,7 +159,7 @@ app.post('/orders', function(req, res, next){
   else{
     console.log("it isn't happening")
   }
-}
+});
 
 
 // // Validates HMAC-SHA1 signatures included in webhook notifications to ensure notifications came from Square
