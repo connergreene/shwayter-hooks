@@ -46,30 +46,30 @@ app.use(function(req, res, next){
 })
 
 //starting web hooks
-var headers = {
-    Authorization : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
-    Accept : 'application/json'
-};
+// var headers = {
+//     Authorization : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
+//     Accept : 'application/json'
+// };
 
-var postData = {
-  event_types : ["PAYMENT_UPDATED"]
-};
-var options = {
-    url: 'https://connect.squareup.com/v1/me/webhooks',
-    headers: {
-      'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
-      'Accept' : 'application/json',
-      'Content-Type' : 'application/json'
-    },
-    formData: postData
-}
-request(options, function(error, res, body) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(res.body);
-    }
-});
+// var postData = {
+//   event_types : ["PAYMENT_UPDATED"]
+// };
+// var options = {
+//     url: 'https://connect.squareup.com/v1/me/webhooks',
+//     headers: {
+//       'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
+//       'Accept' : 'application/json',
+//       'Content-Type' : 'application/json'
+//     },
+//     formData: postData
+// }
+// request(options, function(error, res, body) {
+//     if (error) {
+//       console.log(error);
+//     } else {
+//       console.log(res.body);
+//     }
+// });
 
 // var options2 = {
 //   url: 'https://connect.squareup.com/v1/me/payments?order=DESC',
@@ -99,17 +99,19 @@ request(options, function(error, res, body) {
 
 // });
 
-var ACCESS_TOKEN = 'sq0atp-prCX8XFu_3QLtK8j-seeaA'
+var ACCESS_TOKEN = 'sq0atp-prCX8XFu_3QLtK8j-seeaA';
 
 //var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
 
-var WEBHOOK_URL = 'https://shwayter-hooks.herokuapp.com/orders'
+var WEBHOOK_URL = 'https://shwayter-hooks.herokuapp.com/orders';
 
-var CONNECT_HOST = 'https://connect.squareup.com'
+var CONNECT_HOST = 'https://connect.squareup.com';
 
-var REQUEST_HEADERS = { 'Authorization' : 'Bearer ' + ACCESS_TOKEN,
-                     'Accept' : 'application/json',
-                     'Content-Type' : 'application/json'}
+var REQUEST_HEADERS = { 
+                        'Authorization' : 'Bearer ' + ACCESS_TOKEN,
+                        'Accept' : 'application/json',
+                        'Content-Type' : 'application/json'
+                      };
 
 
 app.post('/orders', function(req, res, next){
@@ -127,20 +129,12 @@ app.post('/orders', function(req, res, next){
 //   end
 
 // Load the JSON body into a hash
-  var callback_body_json = JSON.parse(callback_body)
+  var callback_body_json = JSON.parse(callback_body);
 
 // If the notification indicates a PAYMENT_UPDATED event...
   if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'PAYMENT_UPDATED'){
-
-  // Get the ID of the updated payment
     var payment_id = callback_body_json['entity_id'];
-
-  // Get the ID of the payment's associated location
     var location_id = callback_body_json['location_id'];
-
-  // Send a request to the Retrieve Payment endpoint to get the updated payment's full details
-    // response = Unirest.get CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
-    //               headers: REQUEST_HEADERS
     var newOptions = {
       url: CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
       headers: REQUEST_HEADERS
@@ -151,13 +145,10 @@ app.post('/orders', function(req, res, next){
             return console.error('upload failed:', e);
           }
         console.log("it actually happened", body)
-    })
-
-  // Perform an action based on the returned payment (in this case, simply log it)
-    //puts JSON.pretty_generate(response.body)
+    });
   }
   else{
-    console.log("it isn't happening")
+    console.log("it isn't happening");
   }
 });
 
