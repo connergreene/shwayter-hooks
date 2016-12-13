@@ -59,7 +59,7 @@ var options = {
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
     },
-    body : postData,
+    body : JSON.stringify(postData),
     json : true 
 }
 request.put(options, function(error, res, body) {
