@@ -58,9 +58,7 @@ var options = {
       'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
       'Accept' : 'application/json',
       'Content-Type' : 'application/json'
-    },
-    body : postData,
-    json : true 
+    }
 }
 request.put(options, function(error, res, body) {
     if (error) {
