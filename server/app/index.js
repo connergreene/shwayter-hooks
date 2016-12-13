@@ -13,7 +13,7 @@ app.use(require('./logging.middleware'));
 
 app.use(require('./requestState.middleware'));
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: false }))
  
 app.use(bodyParser.json())
 
@@ -44,30 +44,30 @@ app.use(function(req, res, next){
   next(); 
 })
 
-var headers = {
-    Authorization : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
-    Accept : 'application/json'
-};
+// var headers = {
+//     Authorization : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
+//     Accept : 'application/json'
+// };
 
-var postData = {
-  'event_types' : ["PAYMENT_UPDATED"]
-};
-var options = {
-    url: 'https://connect.squareup.com/v1/me/webhooks',
-    headers: {
-      'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
-      'Accept' : 'application/json',
-      'Content-Type' : 'application/json'
-    },
-    body : "[\"PAYMENT_UPDATED\"]"
-}
-request.put(options, function(error, res, body) {
-    if (error) {
-      console.log("this is what is printing: ", error);
-    } else {
-      console.log(res.body);
-    }
-});
+// var postData = {
+//   'event_types' : ["PAYMENT_UPDATED"]
+// };
+// var options = {
+//     url: 'https://connect.squareup.com/v1/me/webhooks',
+//     headers: {
+//       'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
+//       'Accept' : 'application/json',
+//       'Content-Type' : 'application/json'
+//     },
+//     body : "[\"PAYMENT_UPDATED\"]"
+// }
+// request.put(options, function(error, res, body) {
+//     if (error) {
+//       console.log("this is what is printing: ", error);
+//     } else {
+//       console.log(res.body);
+//     }
+// });
 
 // var options2 = {
 //   url: 'https://connect.squareup.com/v1/me/payments?order=DESC',
