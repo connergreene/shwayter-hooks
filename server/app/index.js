@@ -63,6 +63,7 @@ var options = {
     json : true 
 }
 request.put(options, function(error, res, body) {
+    console.log(body);
     if (error) {
       console.log("this is what is printing: ", error);
     } else {
