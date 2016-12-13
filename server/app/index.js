@@ -61,7 +61,7 @@ var options = {
     },
     formData: postData
 }
-request.put(JSON.stringify(options), function(error, res, body) {
+request.put(JSON.parse(options), function(error, res, body) {
     if (error) {
       console.log(error);
     } else {
