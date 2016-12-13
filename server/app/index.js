@@ -94,6 +94,7 @@ app.post('/events', function(req, res){
     // res.send(buf)
     console.log("ngknrengern");
     res.send("bleh");
+    res.end();
 
 });
 
