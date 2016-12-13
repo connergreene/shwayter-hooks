@@ -82,7 +82,7 @@ request.put(options, function(error, res, body) {
 //     }
 // });
 
-app.get('/orders', function(req, res, next){
+app.get('/events', function(req, res, next){
     // var buf = '';
     // req.setEncoding('utf8');
     // req.on('data', function(chunk){ 
@@ -112,7 +112,7 @@ app.get('/orders', function(req, res, next){
 //                       };
 
 
-// app.post('/orders', function(req, res, next){
+// app.post('/events', function(req, res, next){
   
 // // Get the JSON body and HMAC-SHA1 signature of the incoming POST request
 //   var callback_body = req.body;
