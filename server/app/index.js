@@ -82,7 +82,7 @@ request.put(options, function(error, res, body) {
 //     }
 // });
 
-app.post('/events', function(req, res, next){
+app.post('/events', function(req, res){
     // var buf = '';
     // req.setEncoding('utf8');
     // req.on('data', function(chunk){ 
