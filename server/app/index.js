@@ -82,7 +82,7 @@ request.put(options, function(error, res, body) {
 //     }
 // });
 
-app.get('/events', function(req, res, next){
+app.post('/events', function(req, res, next){
     // var buf = '';
     // req.setEncoding('utf8');
     // req.on('data', function(chunk){ 
@@ -177,7 +177,7 @@ app.use('/auth', require('../auth/auth.router'));
 app.use('/api', require('../api/api.router'));
 
 
-var validFrontendRoutes = ['/', '/users', '/users/:id', '/login', '/orders'];
+var validFrontendRoutes = ['/', '/users', '/users/:id', '/login', '/events'];
 var indexPath = path.join(__dirname, '..', '..', 'public', 'index.html');
 console.log(indexPath);
 validFrontendRoutes.forEach(function (stateRoute) {
