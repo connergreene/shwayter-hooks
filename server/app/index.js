@@ -15,7 +15,7 @@ app.use(require('./requestState.middleware'));
 
 app.use(bodyParser.urlencoded({ extended: false }))
  
-app.use(bodyParser.json())
+app.use(bodyParser.json({ type: 'application/*+json' }))
 
 app.use(session({
   secret: 'shway'
@@ -81,6 +81,9 @@ app.use(function(req, res, next){
 //       console.log("this is a thing!  ");
 //     }
 // });
+
+
+
 
 app.post('/events', function(req, res){
     // var buf = '';
