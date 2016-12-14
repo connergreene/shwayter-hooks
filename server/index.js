@@ -4,7 +4,7 @@ var app = require('./app'),
 	db = require('./db');
 
 var port = 8080;
-console.log("thos os process: ", process.env)
+console.log("thos os process: ", process.env.PORT)
 var server = app.listen(process.env.PORT || port, function () {
 	console.log('HTTP server patiently listening on port', port);
 });
