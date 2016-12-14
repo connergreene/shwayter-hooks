@@ -90,41 +90,28 @@ var REQUEST_HEADERS = {
 
 app.post('/events', function(req, res, next){
   
-// Get the JSON body and HMAC-SHA1 signature of the incoming POST request
-  var callback_body_json = req.body;
-  //var callback_signature = req.env['HTTP_X_SQUARE_SIGNATURE'];
+  var fullOrder = req.body;
 
-// // Validate the signature
-//   if not is_valid_callback(callback_body, callback_signature)
-
-//   // Fail if the signature is invalid
-//     puts 'Webhook event with invalid signature detected!'
-//     return
-//   end
-
-// Load the JSON body into a hash
-  console.log(callback_body_json);
-// If the notification indicates a PAYMENT_UPDATED event...
-  if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'PAYMENT_UPDATED'){
-      var payment_id = callback_body_json['entity_id'];
-      var location_id = callback_body_json['location_id'];
+  if (fullOrder.hasOwnProperty('event_type') && fullOrder['event_type'] == 'PAYMENT_UPDATED'){
+      var paymentId = fullOrder['entity_id'];
+      var locationId = fullOrder['location_id'];
       var newOptions = {
-        url: CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
+        url: CONNECT_HOST + '/v1/' + locationId + '/payments/' + paymentId,
         headers: REQUEST_HEADERS
       };
-      console.log("payment id: ", payment_id)
       request(newOptions, function(e, r, body){
-            if (e) {
-              return console.error('upload failed:', e);
-            }
-          console.log("it actually happened", body)
+        if (e) {
+          return console.error('upload failed:', e);
+        }
+        //this is where it sends to front end
+        console.log("it actually happened", body)
       });
   }
   else{
     console.log("it isn't happening");
-    io.emit('order', callback_body_json);
-
+    io.emit('order', fullOrder);
   }
+  res.end('OK');
 });
 
 
