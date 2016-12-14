@@ -3,7 +3,7 @@
 var chalk = require('chalk');
 var startDb = require('./db');
 var server = require('http').createServer();
-var socketIO = require('socket.io');
+
 
 var createApplication = function () {
     var app = require('./app');
