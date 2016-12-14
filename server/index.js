@@ -3,11 +3,11 @@
 var chalk = require('chalk');
 var startDb = require('./db');
 var server = require('http').createServer();
+var io = require('./io')(server);
 
 var createApplication = function () {
     var app = require('./app');
     server.on('request', app);
-    var io = require('./io')(server);
 };
 
 var startServer = function () {
