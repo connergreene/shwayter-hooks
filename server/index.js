@@ -25,7 +25,4 @@ startDb.then(createApplication).then(startServer).catch(function (err) {
     process.kill(1);
 });
 
-module.exports = {
-	server : server,
-	io : io
-};
+module.exports = server;
