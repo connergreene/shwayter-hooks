@@ -5,7 +5,9 @@ var app = require('./app'),
 
 var http = require('http');
 var httpServer = http.Server(app);
-//var io = require('socket.io')(http);
+var io = require('socket.io')(http);
+
+io.emit('order', {hello:"hello"});
 
 var port = 8080;
 var server = httpServer.listen(process.env.PORT || port, function () {
