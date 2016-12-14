@@ -71,22 +71,6 @@ app.use(function(req, res, next){
 
 
 
-// app.post('/events', function(req, res){
-//     // var buf = '';
-//     // req.setEncoding('utf8');
-//     // req.on('data', function(chunk){ 
-//     //     console.log("this happens???");
-//     //     buf += chunk;
-//     //     console.log("this is chunk:   ", chunk);
-
-//     // });
-//     // res.send(buf)
-//     console.log(req.body);
-//     res.send("bleh");
-//     res.end();
-
-// });
-
 var ACCESS_TOKEN = 'sq0atp-prCX8XFu_3QLtK8j-seeaA';
 
 //var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
@@ -139,6 +123,8 @@ app.post('/events', function(req, res, next){
     console.log("it isn't happening");
   }
 });
+
+
 
 
 // // Validates HMAC-SHA1 signatures included in webhook notifications to ensure notifications came from Square
