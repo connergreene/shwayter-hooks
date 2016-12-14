@@ -105,12 +105,12 @@ app.post('/events', function(req, res, next){
         }
         //this is where it sends to front end
         console.log("it actually happened", body)
-        io.emit('order', body);
+        //io.emit('order', body);
       });
   }
   else{
     console.log("it isn't happening");
-    io.emit('order', fullOrder);
+    //io.emit('order', fullOrder);
   }
   //res.end('OK');
 });
