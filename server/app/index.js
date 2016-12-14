@@ -75,13 +75,6 @@ app.use(function(req, res, next){
 //     }
 // });
 
-
-io.on('connection', function(socket){
-  console.log("socket connected")
-  socket.emit('order', { item: 'coffee' }); 
-});
-
-
 var ACCESS_TOKEN = 'sq0atp-prCX8XFu_3QLtK8j-seeaA';
 
 //var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
@@ -115,12 +108,12 @@ app.post('/events', function(req, res, next){
         }
         //this is where it sends to front end
         console.log("it actually happened", body)
-        //io.emit('order', body);
+        io.emit('order', body);
       });
   }
   else{
     console.log("it isn't happening");
-    //io.emit('order', fullOrder);
+    io.emit('order', fullOrder);
   }
   //res.end('OK');
 });
