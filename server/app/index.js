@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var _ = require('lodash');
 var passport = require('passport'); 
 var session = require('express-session');
+var server = require('./index.js');
+var io = require('socket.io')(server);
 
 app.use(require('./logging.middleware'));
 
@@ -120,6 +122,8 @@ app.post('/events', function(req, res, next){
   }
   else{
     console.log("it isn't happening");
+    io.emit('order', callback_body_json);
+
   }
 });
 
