@@ -5,7 +5,10 @@ app.config(function ($stateProvider) {
 		url: '/',
 		templateUrl: '/browser/app/home/home.html',
 		controller: function($scope, $http, orderFactory){
-			//$scope.orders = orderFactory.getPayments();
+			var socket = io('http://localhost:8080');
+			socket.on('order', function (order) {
+    			$('ol').append($('<li>' + order + '</li>'));
+ 			});
 			
 		}
 	});
