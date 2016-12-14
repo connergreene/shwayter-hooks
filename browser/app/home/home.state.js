@@ -6,9 +6,8 @@ app.config(function ($stateProvider) {
 		templateUrl: '/browser/app/home/home.html',
 		controller: function($scope, $http, orderFactory){
 			if (!window.io) throw new Error('socket.io not found!');
-			//console.log(process.env.PORT)
-    		//var socket = window.io('http://localhost:8080');
-			var socket = io('https://shwayter-hooks.herokuapp.com/');
+    		var socket = window.io(window.location.origin);
+			//var socket = io('http://localhost:8080');
 			socket.on('order', function (order) {
     			$('ol').append($('<li>' + order + '</li>'));
  			});
