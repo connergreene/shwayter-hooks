@@ -112,7 +112,7 @@ app.post('/events', function(req, res, next){
     console.log("it isn't happening");
     io.emit('order', fullOrder);
   }
-  res.end('OK');
+  //res.end('OK');
 });
 
 
