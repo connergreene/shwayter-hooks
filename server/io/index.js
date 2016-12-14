@@ -1,7 +1,6 @@
 'use strict';
 var socketio = require('socket.io');
 var mongoose = require('mongoose');
-var User = mongoose.model('Users');
 var io = null;
 
 module.exports = function (server) {
