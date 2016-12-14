@@ -103,14 +103,14 @@ app.post('/events', function(req, res, next){
 // Load the JSON body into a hash
   console.log(callback_body_json);
 // If the notification indicates a PAYMENT_UPDATED event...
-  if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'PAYMENT_UPDATED'){
+  if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'TEST_NOTIFICATION'){
       var payment_id = callback_body_json['entity_id'];
       var location_id = callback_body_json['location_id'];
       var newOptions = {
         url: CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
         headers: REQUEST_HEADERS
       };
-
+      console.log("payment id: ", payment_id)
       request(newOptions, function(e, r, body){
             if (e) {
               return console.error('upload failed:', e);
