@@ -3,7 +3,7 @@
 var chalk = require('chalk');
 var startDb = require('./db');
 var server = require('http').createServer();
-var io = require('./io')(server);
+
 
 var createApplication = function () {
     var app = require('./app');
@@ -25,4 +25,4 @@ startDb.then(createApplication).then(startServer).catch(function (err) {
     process.kill(1);
 });
 
-module.exports = io;
+module.exports = server;
