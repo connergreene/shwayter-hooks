@@ -3,9 +3,9 @@
 var app = require('./app'),
 	db = require('./db');
 
-var http = require('http');
-var httpServer = http.Server(app);
-var io = require('socket.io')(http);
+var httpServer = require('http').Server(app);
+var io = require('socket.io')(httpServer);
+
 
 io.emit('order', {hello:"hello"});
 
