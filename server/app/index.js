@@ -89,7 +89,7 @@ var REQUEST_HEADERS = {
 app.post('/events', function(req, res, next){
   
 // Get the JSON body and HMAC-SHA1 signature of the incoming POST request
-  var callback_body = req.body;
+  var callback_body_json = req.body;
   //var callback_signature = req.env['HTTP_X_SQUARE_SIGNATURE'];
 
 // // Validate the signature
@@ -101,7 +101,6 @@ app.post('/events', function(req, res, next){
 //   end
 
 // Load the JSON body into a hash
-  var callback_body_json = JSON.parse(callback_body);
   console.log(callback_body_json);
 // If the notification indicates a PAYMENT_UPDATED event...
   if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'PAYMENT_UPDATED'){
