@@ -1,24 +1,13 @@
 'use strict';
 
-// var app = require('./app'),
-// 	db = require('./db');
-
-
-// //var port = 8080;
-// var server = app.listen(process.env.PORT, function () {
-// 	console.log('HTTP server patiently listening on port', process.env.PORT);
-// });
-
-// require('./io')(server);
-// module.exports = server;
-
 var chalk = require('chalk');
 var startDb = require('./db');
 var server = require('http').createServer();
+var io = require('./io')(server);
 
 var createApplication = function () {
     var app = require('./app');
-    server.on('request', app); // Attach the Express application.
+    server.on('request', app);
 };
 
 var startServer = function () {
@@ -35,3 +24,5 @@ startDb.then(createApplication).then(startServer).catch(function (err) {
     console.error(chalk.red(err.stack));
     process.kill(1);
 });
+
+module.exports = io;
