@@ -6,7 +6,8 @@ var server = require('http').createServer();
 
 var createApplication = function () {
     var app = require('./app');
-    server.on('request', app); 
+    server.on('request', app);
+    var io = require('./io')(server);
 };
 
 var startServer = function () {
@@ -24,4 +25,7 @@ startDb.then(createApplication).then(startServer).catch(function (err) {
     process.kill(1);
 });
 
-module.exports = server;
+module.exports = {
+	server : server,
+	io : io
+};
