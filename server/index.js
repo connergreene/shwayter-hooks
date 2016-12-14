@@ -1,16 +1,15 @@
 'use strict';
 
-var app = require('./app'),
+var app = require('./app').app,
 	db = require('./db');
+	httpServer = require('./app').server;
+// var io = require('socket.io')(httpServer);
 
-var httpServer = require('http').Server(app);
-var io = require('socket.io')(httpServer);
 
-
-io.on('connection', function(socket){
-	console.log("socket connected")
-	socket.emit('order', { item: 'coffee' });
-});
+// io.on('connection', function(socket){
+// 	console.log("socket connected")
+// 	socket.emit('order', { item: 'coffee' });
+// });
 
 
 
