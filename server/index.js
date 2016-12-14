@@ -1,11 +1,8 @@
 'use strict';
 
-var app = require('./app'),
-	db = require('./db');
-
-var http = require('http');
-var httpServer = http.Server(app);
-//var io = require('socket.io')(http);
+var app = require('./app').app,
+	db = require('./db'),
+	httpServer = require('./app').server;
 
 var port = 8080;
 var server = httpServer.listen(process.env.PORT || port, function () {

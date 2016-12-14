@@ -8,9 +8,11 @@ var bodyParser = require('body-parser');
 var _ = require('lodash');
 var passport = require('passport'); 
 var session = require('express-session');
-var server = require('./index.js');
-var io = require('socket.io')(server);
+//var server = require('./index.js');
+//var io = require('socket.io')(server);
 // var io = require('socket.io').listen(server);
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 
 app.use(require('./logging.middleware'));
@@ -73,13 +75,11 @@ app.use(function(req, res, next){
 //     }
 // });
 
-
-
 var ACCESS_TOKEN = 'sq0atp-prCX8XFu_3QLtK8j-seeaA';
 
 //var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
 
-var WEBHOOK_URL = 'https://shwayter-hooks.herokuapp.com/orders';
+var WEBHOOK_URL = 'https://shwayter-hooks.herokuapp.com/events';
 
 var CONNECT_HOST = 'https://connect.squareup.com';
 
@@ -88,6 +88,7 @@ var REQUEST_HEADERS = {
                         'Accept' : 'application/json',
                         'Content-Type' : 'application/json'
                       };
+
 
 
 app.post('/events', function(req, res, next){
@@ -107,14 +108,14 @@ app.post('/events', function(req, res, next){
         }
         //this is where it sends to front end
         console.log("it actually happened", body)
-        //io.emit('order', body);
+        io.emit('order', body);
       });
   }
   else{
     console.log("it isn't happening");
-    //io.emit('order', fullOrder);
+    io.emit('order', fullOrder);
   }
-  //res.end('OK');
+  res.end('OK');
 });
 
 
@@ -155,4 +156,11 @@ app.use(require('./error.middleware'));
 
 
 
-module.exports = app;
+module.exports = {
+  app : app,
+  server : server
+}
+
+
+
+

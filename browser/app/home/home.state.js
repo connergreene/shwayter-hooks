@@ -12,6 +12,9 @@ app.config(function ($stateProvider) {
     			$('ol').append($('<li>' + order + '</li>'));
  			});
 			
+			  $('button').on('click', function () {
+					$.post('/order');
+				});
 		}
 	});
 });
