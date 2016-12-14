@@ -8,7 +8,9 @@ var bodyParser = require('body-parser');
 var _ = require('lodash');
 var passport = require('passport'); 
 var session = require('express-session');
-var io = require('./index.js');
+var server = require('./index.js');
+var io = socketIO(server);
+
 
 
 app.use(require('./logging.middleware'));
