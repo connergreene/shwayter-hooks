@@ -103,7 +103,7 @@ app.post('/events', function(req, res, next){
 // Load the JSON body into a hash
   console.log(callback_body_json);
 // If the notification indicates a PAYMENT_UPDATED event...
-  if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'TEST_NOTIFICATION'){
+  if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'PAYMENT_UPDATED'){
       var payment_id = callback_body_json['entity_id'];
       var location_id = callback_body_json['location_id'];
       var newOptions = {
