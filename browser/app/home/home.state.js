@@ -6,8 +6,9 @@ app.config(function ($stateProvider) {
 		templateUrl: '/browser/app/home/home.html',
 		controller: function($scope, $http, orderFactory){
 			if (!window.io) throw new Error('socket.io not found!');
-    		var socket = window.io(window.location.origin);
+    		//var socket = window.io(window.location.origin);
 			//var socket = io('http://localhost:8080');
+			console.log("window location:", window.location.origin)
 			socket.on('order', function (order) {
     			$('ol').append($('<li>' + order + '</li>'));
  			});
