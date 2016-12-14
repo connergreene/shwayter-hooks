@@ -9,9 +9,12 @@ app.config(function ($stateProvider) {
 			
 			//console.log("window location:", window.location.origin)
 			socket.on('order', function (order) {
-    			console.log(order);
+    			$('ol').append($('<li>' + order + '</li>'));
  			});
 			
+			  $('button').on('click', function () {
+					$.post('/order');
+				});
 		}
 	});
 });
