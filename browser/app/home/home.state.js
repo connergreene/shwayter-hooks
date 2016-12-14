@@ -5,7 +5,7 @@ app.config(function ($stateProvider) {
 		url: '/',
 		templateUrl: '/browser/app/home/home.html',
 		controller: function($scope, $http, orderFactory){
-			var socket = io.connect();
+			var socket = window.io(window.location.origin);
 			
 			//console.log("window location:", window.location.origin)
 			socket.on('order', function (order) {
