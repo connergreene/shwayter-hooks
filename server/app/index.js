@@ -90,7 +90,7 @@ app.post('/events', function(req, res, next){
   
 // Get the JSON body and HMAC-SHA1 signature of the incoming POST request
   var callback_body = req.body;
-  var callback_signature = req.env['HTTP_X_SQUARE_SIGNATURE'];
+  //var callback_signature = req.env['HTTP_X_SQUARE_SIGNATURE'];
 
 // // Validate the signature
 //   if not is_valid_callback(callback_body, callback_signature)
@@ -105,19 +105,19 @@ app.post('/events', function(req, res, next){
 
 // If the notification indicates a PAYMENT_UPDATED event...
   if (callback_body_json.hasOwnProperty('event_type') && callback_body_json['event_type'] == 'PAYMENT_UPDATED'){
-    var payment_id = callback_body_json['entity_id'];
-    var location_id = callback_body_json['location_id'];
-    var newOptions = {
-      url: CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
-      headers: REQUEST_HEADERS
-    };
+      var payment_id = callback_body_json['entity_id'];
+      var location_id = callback_body_json['location_id'];
+      var newOptions = {
+        url: CONNECT_HOST + '/v1/' + location_id + '/payments/' + payment_id,
+        headers: REQUEST_HEADERS
+      };
 
-    request(newOptions, function(e, r, body){
-          if (e) {
-            return console.error('upload failed:', e);
-          }
-        console.log("it actually happened", body)
-    });
+      request(newOptions, function(e, r, body){
+            if (e) {
+              return console.error('upload failed:', e);
+            }
+          console.log("it actually happened", body)
+      });
   }
   else{
     console.log("it isn't happening");
@@ -141,10 +141,6 @@ app.post('/events', function(req, res, next){
 //   return Digest::SHA1.base64digest(string_signature) == Digest::SHA1.base64digest(callback_signature)
 // }
 
-app.get('/foo', function(req, res, next){
-    console.log("wfwefwefwefwef");
-    res.send("hello world");
-});
 
 app.use(require('./statics.middleware'));
  
