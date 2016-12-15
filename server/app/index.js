@@ -111,7 +111,8 @@ app.post('/events', function(req, res, next){
         var order = bodyJSON.itemizations;
         var kitchenOrders = [];
         for (var item in order){
-          var itemCategory = item.item_detail.category_name;
+          console.log("this is item", item);
+          var itemCategory = item;
           if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIE'){
             kitchenOrders.push(item);
           }
