@@ -112,29 +112,12 @@ app.post('/events', function(req, res, next){
       });
   }
   else{
+    //test webhook
     console.log("it isn't happening");
     io.emit('order', fullOrder);
   }
   res.end('OK');
 });
-
-
-
-
-// // Validates HMAC-SHA1 signatures included in webhook notifications to ensure notifications came from Square
-// var is_valid_callback(callback_body, callback_signature){
-  
-// // Combine your webhook notification URL and the JSON body of the incoming request into a single string
-//   var string_to_sign = WEBHOOK_URL + callback_body
-
-// // Generate the HMAC-SHA1 signature of the string, signed with your webhook signature key
-//   var string_signature = Base64.strict_encode64(OpenSSL::HMAC.digest('sha1', WEBHOOK_SIGNATURE_KEY, string_to_sign))
-
-// // Hash the signatures a second time (to protect against timing attacks)
-// // and compare them
-//   return Digest::SHA1.base64digest(string_signature) == Digest::SHA1.base64digest(callback_signature)
-// }
-
 
 app.use(require('./statics.middleware'));
  
