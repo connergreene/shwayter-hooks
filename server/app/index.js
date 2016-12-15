@@ -108,17 +108,19 @@ app.post('/events', function(req, res, next){
         }
         //this is where it sends to front end
         var bodyJSON = JSON.parse(body);
-        var order = bodyJSON.itemizations;
+        var items = bodyJSON.itemizations;
         var kitchenOrders = [];
-        for (var item in order){
-          console.log("this is item", item);
-          var itemCategory = item;
+        for (var i = 0; i < items.length; i++){
+          var item = items[i];
+          var itemCategory = item.item_detail.category_name;
           if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIE'){
             kitchenOrders.push(item);
           }
         }
-        console.log("is json now", bodyJSON.itemizations);
-        io.emit('order', kitchenOrders);
+        console.log("kitchenOrders", kitchenOrders);
+        if (kitchenOrders.length > 0){
+          io.emit('order', kitchenOrders);
+        }
       });
   }
   else{
