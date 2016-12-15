@@ -108,7 +108,7 @@ app.post('/events', function(req, res, next){
         }
         //this is where it sends to front end
         console.log("it actually happened", body)
-        io.emit('order', body);
+        io.emit('order', body.item_detail);
       });
   }
   else{
