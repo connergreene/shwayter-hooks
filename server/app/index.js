@@ -109,7 +109,7 @@ app.post('/events', function(req, res, next){
         //this is where it sends to front end
         var bodyJSON = JSON.parse(body);
         console.log("is json now", bodyJSON.itemizations);
-        io.emit('order', bodyJSON.itemization]);
+        io.emit('order', bodyJSON.itemizations);
       });
   }
   else{
