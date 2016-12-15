@@ -107,8 +107,8 @@ app.post('/events', function(req, res, next){
           return console.error('upload failed:', e);
         }
         //this is where it sends to front end
-        console.log("it actually happened", body.itemizations)
-        io.emit('order', body.itemizations);
+        console.log("it actually happened", body["itemizations"])
+        io.emit('order', body["itemizations"]);
       });
   }
   else{
