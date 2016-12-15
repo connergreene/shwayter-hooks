@@ -108,9 +108,8 @@ app.post('/events', function(req, res, next){
         }
         //this is where it sends to front end
         var bodyJSON = JSON.parse(body);
-        console.log("is json now", bodyJSON);
-        console.log("it actually happened", body["itemizations"])
-        io.emit('order', body["itemizations"]);
+        console.log("is json now", bodyJSON.itemizations);
+        io.emit('order', bodyJSON.itemization]);
       });
   }
   else{
