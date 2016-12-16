@@ -3,7 +3,7 @@ app.directive('ticket', function ($state, $location, Auth) {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
 		scope: {
-         ticket: '='
+         order: '='
       	},
 		link: function (scope) {
 			
