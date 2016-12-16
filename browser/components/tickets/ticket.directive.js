@@ -3,10 +3,11 @@ app.directive('ticket', function ($state, $location, Auth) {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
 		scope: {
-         order: '='
+         order: '@'
       	},
 		link: function (scope) {
-			
+			console.log("with scope", scope.order);
+			console.log("without scope", order);
 		}
 	}
 });
