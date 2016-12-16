@@ -8,8 +8,13 @@ app.config(function ($stateProvider) {
 			var socket = io.connect();
 			$scope.tickets = [];
 			socket.on('order', function (order) {
-				$scope.tickets.push(order);
-				$scope.$index++;
+				$scope.$apply(function(){
+					$scope.tickets.push(order);
+					$scope.$index++;
+					console.log("this is happening");
+					console.log($scope.tickets)
+					
+				});
  			});
 		}
 	});
