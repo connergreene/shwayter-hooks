@@ -11,3 +11,10 @@ app.directive('ticket', function ($state, $location, Auth) {
 		}
 	}
 });
+
+
+app.filter('num', function() {
+    return function(input) {
+      return parseInt(input, 10);
+    }
+});
