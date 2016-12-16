@@ -6,7 +6,8 @@ app.directive('ticket', function ($state, $location, Auth) {
          order: '@'
       	},
 		link: function (scope) {
-			console.log("with scope", scope.order);
+			//list of items in order
+			scope.order;
 		}
 	}
 });
