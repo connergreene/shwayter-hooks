@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
 			var socket = io.connect();
 			$scope.tickets = [];
 			socket.on('order', function (order) {
-				tickets.push(order);
+				$scope.tickets.push(order);
  			});
 		}
 	});

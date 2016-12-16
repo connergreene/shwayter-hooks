@@ -114,7 +114,7 @@ app.post('/events', function(req, res, next){
           var item = items[i];
           var itemCategory = item.item_detail.category_name;
           console.log("item category:", itemCategory);
-          //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIE'){
+          //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIES'){
             kitchenOrders.push(item);
           //}
         }
