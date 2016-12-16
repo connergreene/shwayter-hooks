@@ -1,5 +1,7 @@
 <div class="home">
-	<body>
-		<ticket ng-repeat="ticket in tickets" order="ticket"></ticket>
-	</body>
+	<div class="row" ng-repeat="row in [0,1,2]">
+		<div class="col" ng-repeat="ticket in tickets" ng-if="$index % 3 == row">
+			<ticket order="ticket"></ticket>
+		</div>
+	</div>
 </div>
