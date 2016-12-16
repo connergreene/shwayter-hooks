@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
 		templateUrl: '/browser/app/home/home.html',
 		controller: function($scope, $http){
 			var socket = io.connect();
-			//$scope.tickets = [];
+			$scope.tickets = [];
 			socket.on('order', function (order) {
 				$scope.tickets.push(order);
 				$scope.$index++;
