@@ -6,9 +6,9 @@ app.config(function ($stateProvider) {
 		templateUrl: '/browser/app/home/home.html',
 		controller: function($scope, $http){
 			var socket = io.connect();
+			$scope.tickets = [];
 			socket.on('order', function (order) {
-				console.log(order);
-    			$('ol').append($('<li>' + order + '</li>'));
+				tickets.push(order);
  			});
 		}
 	});
