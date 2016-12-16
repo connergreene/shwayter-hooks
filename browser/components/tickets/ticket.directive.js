@@ -7,7 +7,6 @@ app.directive('ticket', function ($state, $location, Auth) {
       	},
 		link: function (scope) {
 			console.log("with scope", scope.order);
-			console.log("without scope", order);
 		}
 	}
 });
