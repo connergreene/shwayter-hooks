@@ -9,6 +9,7 @@ app.config(function ($stateProvider) {
 			$scope.tickets = [];
 			socket.on('order', function (order) {
 				$scope.tickets.push(order);
+				$scope.$index++;
  			});
 		}
 	});
