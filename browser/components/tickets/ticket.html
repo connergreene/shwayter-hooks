@@ -1,5 +1,5 @@
 <div class="ticket">
-    <div ng-repeat="item in order">
+    <div ng-repeat="item in order track by $index">
         {{item}}
     </div>
 </div>
