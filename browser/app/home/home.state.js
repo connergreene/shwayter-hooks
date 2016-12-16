@@ -11,8 +11,8 @@ app.config(function ($stateProvider) {
 				$scope.$apply(function(){
 					$scope.tickets.push(order);
 					$scope.$index++;
-					console.log("this is happening");
-					console.log($scope.tickets)
+					console.log("type of1:", typeof order)
+
 					
 				});
  			});

@@ -8,6 +8,7 @@ app.directive('ticket', function ($state, $location, Auth) {
 		link: function (scope) {
 			//list of items in order
 			scope.order;
+			console.log("type of2:", typeof scope.order)
 		}
 	}
 });
