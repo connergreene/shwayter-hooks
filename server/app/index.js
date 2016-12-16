@@ -118,7 +118,7 @@ app.post('/events', function(req, res, next){
             kitchenOrders.push(item);
           //}
         }
-        console.log("kitchenOrders", kitchenOrders);
+        console.log("kitchenOrders", bodyJSON);
         if (kitchenOrders.length > 0){
           io.emit('order', kitchenOrders);
         }
