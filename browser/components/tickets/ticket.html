@@ -2,6 +2,6 @@
     <div ng-repeat="item in order">
         <h1>{{item.name}}</h1>
         <h2>{{item.quantity}}</h2>
-        <p ng-if="item.notes">{{item.notes}}</p>
+        <p ng-if="item.notes">{{item.notes | number:0}}</p>
     </div>
 </div>
