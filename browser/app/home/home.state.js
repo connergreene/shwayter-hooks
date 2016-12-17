@@ -10,7 +10,7 @@ app.config(function ($stateProvider) {
 			socket.on('order', function (order) {
 				$scope.$apply(function(){
 					$scope.tickets.push(order);
-					$scope.$index++;
+					//$scope.$index++;
 				});
  			});
 		}

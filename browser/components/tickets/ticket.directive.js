@@ -18,3 +18,4 @@ app.filter('num', function() {
       return parseInt(input, 10);
     }
 });
+
