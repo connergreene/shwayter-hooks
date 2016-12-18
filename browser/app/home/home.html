@@ -1,7 +1,6 @@
 <div class="home">
 	<div
         ng-repeat="ticket in tickets track by $index"
-        ng-if="$index % 2 === 0"
         class="row">
         <div
             ng-repeat="i in [$index, $index + 1]"
