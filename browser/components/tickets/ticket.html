@@ -1,7 +1,16 @@
-<div class="ticket">
+<!-- <div class="ticket">
     <div class="col-xs-5" ng-repeat="item in order">
         <a>{{item.name}}</a>
         <a>{{item.quantity | num}}</a>
         <p ng-if="item.notes">{{item.notes}}</p>
+    </div>
+</div> -->
+
+<!-- for testing -->
+<div class="ticket">
+    <div class="col-xs-5" ng-repeat="item in order">
+        <a>{{item.entity_id}}</a>
+        <a>{{item.event_type}}</a>
+        <p>{{item.merchant_id}}</p>
     </div>
 </div>
