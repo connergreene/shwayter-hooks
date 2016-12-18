@@ -3,7 +3,6 @@
         ng-repeat="ticket in tickets track by $index"
         class="row">
         <div
-            ng-repeat="i in [$index, $index + 1]"
             class="col-md-6">
             <div class="card">
                 <ticket order="ticket"></ticket>
