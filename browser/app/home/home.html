@@ -1,6 +1,6 @@
 <div class="home">
-	<div class="col-md-6" ng-repeat="col in [0,1,2]">
-		<div class="row" ng-repeat="ticket in tickets track by $index" ng-if="$index % 3 === 0">
+	<div class="row" ng-repeat="row in [0,1,2,4,5]">
+		<div class="col-md-6" ng-repeat="ticket in tickets track by $index" ng-if="$index % 3 === 0">
 			<ticket order="ticket"></ticket>
 		</div>
 	</div>
