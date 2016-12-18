@@ -126,7 +126,7 @@ app.post('/events', function(req, res, next){
   }
   else{
     //test webhook
-    console.log("it isn't happening");
+    console.log(fullOrder);
     io.emit('order', fullOrder);
   }
   res.end('OK');
