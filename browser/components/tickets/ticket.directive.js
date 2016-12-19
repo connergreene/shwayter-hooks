@@ -7,7 +7,7 @@ app.directive('ticket', function ($state, $location, Auth) {
       	},
 		link: function (scope) {
 			//list of items in order
-			scope.order;
+			console.log("this is order", scope.order);
 		}
 	}
 });
