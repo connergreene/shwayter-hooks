@@ -1,7 +1,7 @@
 <div class="ticket" style="border:1px solid black">
     <div ng-repeat="item in order">
-        <a>{{item.name}}</a>
-        <a>{{item.quantity | num}}</a>
+        <p>{{item.qupantity | num}}</p>
+        <p>{{item.name}}</p>
         <p ng-if="item.notes">{{item.notes}}</p>
     </div>
 </div>
