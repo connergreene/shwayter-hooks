@@ -1,5 +1,5 @@
 <div class="ticket">
-    <div class="col-xs-5" ng-repeat="item in order">
+    <div ng-repeat="item in order">
         <a>{{item.name}}</a>
         <a>{{item.quantity | num}}</a>
         <p ng-if="item.notes">{{item.notes}}</p>
