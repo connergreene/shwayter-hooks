@@ -1,4 +1,4 @@
-app.directive('ticket', function ($state, $location, Auth) {
+app.directive('ticket', function ($state, $location, $interval, Auth) {
 	return {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
@@ -6,7 +6,9 @@ app.directive('ticket', function ($state, $location, Auth) {
          order: '='
       	},
 		link: function (scope) {
-			//list of items in order
+			scope.counter = 0;
+            scope.time = moment().hour(0).minute(0).second(scope.counter++).format('HH : mm : ss');
+			$interval(time, 1000);
 			console.log("this is order", scope.order);
 		}
 	}
