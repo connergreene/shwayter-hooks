@@ -3,26 +3,28 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
 		scope: {
-         order: '='
+         order: '=',
+         index: '='
       	},
 		link: function (scope) {
 			scope.ms = 0
 			scope.date = new Date();
-			scope.reset = function(){
-				scope.ms = 0;
-			};
+			var counter=0;
 			$interval(function(){
-			scope.date = new Date();
+				scope.date = new Date();
 				scope.ms+=1000;
+				if(counter <= 30){
+					document.querySelector('.ticket').style.background = 'green';
+				}
+				else if(counter > 30 && counter <= 60){
+					document.querySelector('.ticket').style.background = 'orange';
+				}
+				else{
+					document.querySelector('.ticket').style.background = 'red';
+				}
+				counter++;
 			},1000)
-
-			var colors = ['green', 'orange', 'red'];
-			var active = 0;
-			console.log(scope.date);
-			setInterval(function(){
-				document.querySelector('.ticket').style.background = colors[active];
-				active++;
-			}, 30000);
+			
 			console.log("this is order", scope.order);
 		}
 	}
