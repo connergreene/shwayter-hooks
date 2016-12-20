@@ -14,17 +14,18 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			$interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
-				if(counter.num <= 30){
-					document.querySelector('.ticket').style.background = 'green';
-				}
-				else if(counter.num > 30 && counter.num <= 60){
-					document.querySelector('.ticket').style.background = 'orange';
-				}
-				else{
-					document.querySelector('.ticket').style.background = 'red';
-				}
 				counter.num++;
 			},1000)
+			
+			if(counter.num <= 30){
+				document.querySelector('.ticket').style.background = 'green';
+			}
+			else if(counter.num > 30 && counter.num <= 60){
+				document.querySelector('.ticket').style.background = 'orange';
+			}
+			else{
+				document.querySelector('.ticket').style.background = 'red';
+			}
 		}
 	}
 });
