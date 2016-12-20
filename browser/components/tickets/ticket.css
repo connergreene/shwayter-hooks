@@ -1,9 +1,12 @@
 .ticket {
-	border : 1px solid black;
 	width: 150px; 
 	height: 150px;
     float: left;
     padding-right: 20px;
     margin-left: 15px;
     margin-bottom: 15px;
+}
+
+.order-items {
+	border : 1px solid black;
 }
