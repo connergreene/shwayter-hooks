@@ -7,6 +7,15 @@ app.directive('ticket', function ($state, $location, Auth) {
       	},
 		link: function (scope) {
 			//list of items in order
+			$scope.ms = 0
+			$scope.date = new Date();
+			$scope.reset = function(){
+				$scope.ms = 0;
+			};
+			$interval(function(){
+				$scope.date = new Date();
+				$scope.ms+=1000;
+			},1000)
 			console.log("this is order", scope.order);
 		}
 	}
