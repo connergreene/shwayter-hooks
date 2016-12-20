@@ -12,10 +12,10 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 				scope.ms = 0;
 			};
 			$interval(function(){
-			scope.date = new Date();
+				scope.date = new Date();
 				scope.ms+=1000;
 			},1000)
-
+			console.log(scope.ms)
 			if(scope.ms <= 3000){
 				document.querySelector('.ticket').style.background = 'green';
 			}
