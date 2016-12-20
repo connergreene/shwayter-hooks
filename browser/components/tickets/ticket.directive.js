@@ -16,10 +16,10 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 				scope.ms+=1000;
 			},1000)
 
-			if(scope.ms <= 30000){
+			if(scope.ms <= 3000){
 				document.querySelector('.ticket').style.background = 'green';
 			}
-			else if(scope.ms > 30000 && scope.ms <= 60000){
+			else if(scope.ms > 3000 && scope.ms <= 6000){
 				document.querySelector('.ticket').style.background = 'orange';
 			}
 			else{
