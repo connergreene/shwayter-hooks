@@ -21,10 +21,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			setInterval(function(){
 				document.querySelector('.ticket').style.background = colors[active];
 				active++;
-				if (active == colors.length){
-					active = 0;
-				}
-			}, 5000);
+			}, 30000);
 			console.log("this is order", scope.order);
 		}
 	}
