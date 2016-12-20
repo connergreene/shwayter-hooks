@@ -8,21 +8,21 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		link: function (scope) {
 			scope.ms = 0
 			scope.date = new Date();
-			var counter={num:0};
+			var counter=0;
 			$interval(function(){
 				scope.date = new Date();
-				var thisCount = new counter;
+				console.log(this);
 				scope.ms+=1000;
-				if(thisCount.num <= 30){
+				if(counter <= 30){
 					document.querySelector('.ticket').style.background = 'green';
 				}
-				else if(thisCount.num > 30 && thisCount.num <= 60){
+				else if(counter > 30 && counter <= 60){
 					document.querySelector('.ticket').style.background = 'orange';
 				}
 				else{
 					document.querySelector('.ticket').style.background = 'red';
 				}
-				thisCount.num++;
+				counter++;
 			},1000)
 			
 			console.log("this is order", scope.order);
