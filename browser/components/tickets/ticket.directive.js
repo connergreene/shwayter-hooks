@@ -15,6 +15,16 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			scope.date = new Date();
 				scope.ms+=1000;
 			},1000)
+
+			var colors = ['green', 'orange', 'red'];
+			var active = 0;
+			setInterval(function(){
+				document.querySelector('.ticket').style.background = colors[active];
+				active++;
+				if (active == colors.length){
+					active = 0;
+				}
+			}, 5000);
 			console.log("this is order", scope.order);
 		}
 	}
