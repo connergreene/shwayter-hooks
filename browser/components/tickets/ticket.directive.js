@@ -6,9 +6,15 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
          order: '='
       	},
 		link: function (scope) {
-			scope.counter = 0;
-            scope.time = moment().hour(0).minute(0).second(scope.counter++).format('HH : mm : ss');
-			$interval(time, 1000);
+			scope.ms = 0
+			scope.date = new Date();
+			scope.reset = function(){
+				scope.ms = 0;
+			};
+			$interval(function(){
+			scope.date = new Date();
+				scope.ms+=1000;
+			},1000)
 			console.log("this is order", scope.order);
 		}
 	}
