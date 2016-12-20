@@ -1,5 +1,5 @@
 <div class="ticket">
-    <h1>{{ ms | date : 'HH:mm:ss' : 'UTC' }}</h1>
+    <div>{{ time }}</div>
     <div class="order-items" ng-repeat="item in order">
         <strong>{{item.quantity | num}} {{item.name}}</strong>
         <p ng-if="item.notes">{{item.notes}}</p>
