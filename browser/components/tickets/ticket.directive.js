@@ -18,6 +18,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 
 			var colors = ['green', 'orange', 'red'];
 			var active = 0;
+			console.log(scope.date);
 			setInterval(function(){
 				document.querySelector('.ticket').style.background = colors[active];
 				active++;
