@@ -1,18 +1,16 @@
 <div class="ticket">
     <div>{{ ms | date : 'HH:mm:ss' : 'UTC' }}</div>
     <div class="order-items" ng-repeat="item in order">
-        <strong>{{item.quantity | num}} {{item.name}}</strong>
-        <p ng-if="item.notes">{{item.notes}}</p>
+        <strong>{{item.quantity | num}}-{{item.name}}</strong>
+        <p class="note" ng-if="item.notes">{{item.notes}}</p>
     </div>
 </div>
 
 <!-- for testing -->
 <!-- <div class="ticket">
+    <div>{{ ms | date : 'HH:mm:ss' : 'UTC' }}</div>
     <div class="order-items">
-        <strong>{{order.entity_id}}</strong>
-        <p>{{order.event_type}}</p>
-        <p>{{order.merchant_id}}</p>
-        <strong>{{order.entity_id}}</strong>
+        <strong>hello</strong>
         <p>{{order.event_type}}</p>
         <p>{{order.merchant_id}}</p>
     </div>
