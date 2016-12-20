@@ -1,15 +1,16 @@
-app.directive('ticket', function ($state, $location, $interval, $index, Auth) {
+app.directive('ticket', function ($state, $location, $interval, Auth) {
 	return {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
 		scope: {
-         order: '='
+         order: '=',
+         index: '='
       	},
 		link: function (scope) {
 			scope.ms = 0
 			scope.date = new Date();
 			var counter=0;
-			console.log($index);
+			console.log(index);
 			$interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
