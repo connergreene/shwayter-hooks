@@ -5,14 +5,14 @@ app.directive('ticket', function ($state, $location, Auth) {
 		scope: {
          order: '='
       	},
-		link: function (scope) {
+		link: function (scope, interval) {
 			//list of items in order
-			$scope.ms = 0
-			$scope.date = new Date();
-			$scope.reset = function(){
+			scope.ms = 0
+			scope.date = new Date();
+			scope.reset = function(){
 				$scope.ms = 0;
 			};
-			$interval(function(){
+			interval(function(){
 				$scope.date = new Date();
 				$scope.ms+=1000;
 			},1000)
