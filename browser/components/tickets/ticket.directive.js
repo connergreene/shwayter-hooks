@@ -14,16 +14,17 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			$interval(function(){
 			scope.date = new Date();
 				scope.ms+=1000;
-				console.log(scope.ms)
 			},1000)
 
-			var colors = ['green', 'orange', 'red'];
-			var active = 0;
-
-			setInterval(function(){
-				document.querySelector('.ticket').style.background = colors[active];
-				active++;
-			}, 30000);
+			if(scope.ms <= 30000){
+				document.querySelector('.ticket').style.background = green;
+			}
+			else if(scope.ms > 30000 && scope.ms <= 60000){
+				document.querySelector('.ticket').style.background = orange;
+			}
+			else{
+				document.querySelector('.ticket').style.background = red;
+			}
 			console.log("this is order", scope.order);
 		}
 	}
