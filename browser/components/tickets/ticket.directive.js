@@ -1,4 +1,4 @@
-app.directive('ticket', function ($state, $location, $interval, Auth) {
+app.directive('ticket', function ($state, $location, $interval, $index, Auth) {
 	return {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
@@ -9,9 +9,9 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			scope.ms = 0
 			scope.date = new Date();
 			var counter=0;
+			console.log($index);
 			$interval(function(){
 				scope.date = new Date();
-				console.log(this);
 				scope.ms+=1000;
 				if(counter <= 30){
 					document.querySelector('.ticket').style.background = 'green';
