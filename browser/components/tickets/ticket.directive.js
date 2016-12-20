@@ -9,24 +9,23 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		link: function (scope) {
 			scope.ms = 0
 			scope.date = new Date();
-			var counter=0;
-			console.log(scope.index);
+			var num = scope.index;
+			var counter={num : 0};
 			$interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
-				if(counter <= 30){
-					document.querySelector('.ticket').style.background = 'green';
-				}
-				else if(counter > 30 && counter <= 60){
-					document.querySelector('.ticket').style.background = 'orange';
-				}
-				else{
-					document.querySelector('.ticket').style.background = 'red';
-				}
-				counter++;
+				counter.num++;
 			},1000)
 			
-			console.log("this is order", scope.order);
+			if(counter.num <= 30){
+				document.querySelector('.ticket').style.background = 'green';
+			}
+			else if(counter.num > 30 && counter.num <= 60){
+				document.querySelector('.ticket').style.background = 'orange';
+			}
+			else{
+				document.querySelector('.ticket').style.background = 'red';
+			}
 		}
 	}
 });
