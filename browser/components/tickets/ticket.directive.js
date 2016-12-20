@@ -8,18 +8,20 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		link: function (scope) {
 			scope.ms = 0
 			scope.date = new Date();
+			var counter=0;
 			$interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
-				if(scope.ms <= 3000){
+				if(counter <= 30){
 					document.querySelector('.ticket').style.background = 'green';
 				}
-				else if(scope.ms > 3000 && scope.ms <= 6000){
+				else if(counter > 30 && counter <= 60){
 					document.querySelector('.ticket').style.background = 'orange';
 				}
 				else{
 					document.querySelector('.ticket').style.background = 'red';
 				}
+				counter++;
 			},1000)
 			
 			console.log("this is order", scope.order);
