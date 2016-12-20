@@ -13,8 +13,8 @@ app.directive('ticket', function ($state, $location, Auth) {
 				$scope.ms = 0;
 			};
 			interval(function(){
-				$scope.date = new Date();
-				$scope.ms+=1000;
+				scope.date = new Date();
+				scope.ms+=1000;
 			},1000)
 			console.log("this is order", scope.order);
 		}
