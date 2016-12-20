@@ -10,5 +10,6 @@
     transition: background .5s;
 }
 
-.order-items {
+.note {
+	color: blue;
 }
