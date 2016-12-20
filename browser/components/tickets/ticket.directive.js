@@ -8,23 +8,20 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		link: function (scope) {
 			scope.ms = 0
 			scope.date = new Date();
-			scope.reset = function(){
-				scope.ms = 0;
-			};
 			$interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
+				if(scope.ms <= 3000){
+					document.querySelector('.ticket').style.background = 'green';
+				}
+				else if(scope.ms > 3000 && scope.ms <= 6000){
+					document.querySelector('.ticket').style.background = 'orange';
+				}
+				else{
+					document.querySelector('.ticket').style.background = 'red';
+				}
 			},1000)
-			console.log(scope.ms)
-			if(scope.ms <= 3000){
-				document.querySelector('.ticket').style.background = 'green';
-			}
-			else if(scope.ms > 3000 && scope.ms <= 6000){
-				document.querySelector('.ticket').style.background = 'orange';
-			}
-			else{
-				document.querySelector('.ticket').style.background = 'red';
-			}
+			
 			console.log("this is order", scope.order);
 		}
 	}
