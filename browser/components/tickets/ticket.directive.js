@@ -13,11 +13,11 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			var time = $interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
-				if(scope.ms > 3000 && scope.ms <= 6000){
+				if(scope.ms > 30000 && scope.ms <= 60000){
 					scope.timer.green = false;
 					scope.timer.orange = true;
 				}
-				else if (scope.ms > 6000){
+				else if (scope.ms > 60000){
 					scope.timer.orange = false;
 					scope.timer.red = true;
 				}
