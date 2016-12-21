@@ -1,12 +1,21 @@
 .ticket {
 	width: 150px; 
-	height: 150px;
+	height: 200px;
     float: left;
     padding-right: 20px;
     margin-left: 15px;
     margin-bottom: 15px;
 	border : 1px solid black;
-    transition: background .5s;
+	transition: background .5s;
+}
+
+.ticket-header {
+	float: left;
+	width: 150px;
+	height: 50px;
+	border : 1px solid black;
+	background: white;
+	
 }
 
 .note {
@@ -14,13 +23,13 @@
 }
 
 .green{
-  background: green;
+  background: #99ff99;
 }
 
-.orange{
-  background: orange;
+.yellow{
+  background: #ffff99;
 }
 
 .red{
-  background: red;
+  background: #ff6666;
 }

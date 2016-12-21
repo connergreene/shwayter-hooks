@@ -3,22 +3,21 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
 		scope: {
-         order: '=',
-         index: '='
+         order: '='
       	},
 		link: function (scope, element, attrs) {
 			scope.ms = 0
 			scope.date = new Date();
-			scope.timer = {green:true, orange: false, red: false}
+			scope.timer = {green:true, yellow: false, red: false}
 			var time = $interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
 				if(scope.ms > 30000 && scope.ms <= 60000){
 					scope.timer.green = false;
-					scope.timer.orange = true;
+					scope.timer.yellow = true;
 				}
 				else if (scope.ms > 60000){
-					scope.timer.orange = false;
+					scope.timer.yellow = false;
 					scope.timer.red = true;
 				}
 			},1000)
