@@ -1,4 +1,4 @@
-<div ng-click="remove()" class="ticket">
+<div ng-click="remove()" class="ticket" ng-class="{'green':timer.green, 'orange':animation.orange,'red':animation.red}">
     <div>{{ ms | date : 'HH:mm:ss' : 'UTC' }}</div>
     <div class="order-items" ng-repeat="item in order">
         <strong>{{item.quantity | num}}-{{item.name}}</strong>
