@@ -9,7 +9,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		link: function (scope, element, attrs) {
 			scope.ms = 0
 			scope.date = new Date();
-			$interval(function(){
+			var time = $interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
 				if(scope.ms <= 3000){
@@ -25,6 +25,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 
 			scope.remove = function() {
                 element.html('');
+                $interval.cancel(time);
             };
 			
 			console.log("this is order", scope.order);
