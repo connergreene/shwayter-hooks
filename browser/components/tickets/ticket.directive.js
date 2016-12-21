@@ -22,6 +22,10 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 					document.querySelector('.ticket').style.background = 'red';
 				}
 			},1000)
+
+			scope.remove = function() {
+                elt.html('');
+            };
 			
 			console.log("this is order", scope.order);
 		}
