@@ -6,7 +6,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
          order: '=',
          index: '='
       	},
-		link: function (scope) {
+		link: function (scope, element, attrs) {
 			scope.ms = 0
 			scope.date = new Date();
 			$interval(function(){
@@ -24,7 +24,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			},1000)
 
 			scope.remove = function() {
-                elt.html('');
+                element.html('');
             };
 			
 			console.log("this is order", scope.order);
