@@ -6,11 +6,13 @@
     margin-left: 15px;
     margin-bottom: 15px;
 	border : 1px solid black;
+	transition: background .5s;
 }
 
-.order-items{
+.ticket-header {
 	border : 1px solid black;
-	transition: background .5s;
+	background: white;
+	
 }
 
 .note {
