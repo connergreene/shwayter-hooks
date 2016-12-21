@@ -7,9 +7,9 @@
 </div>  -->
 
 
-<div ng-click="remove()" class="ticket" ng-class="{'green':timer.green, 'orange':timer.orange,'red':timer.red}">
+<div ng-click="remove()" class="ticket">
     <div>{{ ms | date : 'HH:mm:ss' : 'UTC' }}</div>
-    <div class="order-items">
+    <div ng-class="{'green':timer.green, 'orange':timer.orange,'red':timer.red}" class="order-items">
         <strong>hello</strong>
         <p class="note">{{order.event_type}}</p>
     </div>

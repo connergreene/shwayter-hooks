@@ -6,7 +6,11 @@
     margin-left: 15px;
     margin-bottom: 15px;
 	border : 1px solid black;
-    transition: background .5s;
+}
+
+.order-items{
+	border : 1px solid black;
+	transition: background .5s;
 }
 
 .note {
