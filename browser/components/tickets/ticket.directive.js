@@ -12,15 +12,15 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			var time = $interval(function(){
 				scope.date = new Date();
 				scope.ms+=1000;
-				if(scope.ms <= 3000){
-					document.querySelector('.ticket').style.background = 'green';
-				}
-				else if(scope.ms > 3000 && scope.ms <= 6000){
-					document.querySelector('.ticket').style.background = 'orange';
-				}
-				else{
-					document.querySelector('.ticket').style.background = 'red';
-				}
+				// if(scope.ms <= 3000){
+				// 	document.querySelector('.ticket').style.background = 'green';
+				// }
+				// else if(scope.ms > 3000 && scope.ms <= 6000){
+				// 	document.querySelector('.ticket').style.background = 'orange';
+				// }
+				// else{
+				// 	document.querySelector('.ticket').style.background = 'red';
+				// }
 			},1000)
 
 			scope.remove = function() {

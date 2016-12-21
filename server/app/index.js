@@ -108,6 +108,7 @@ app.post('/events', function(req, res, next){
         }
         //this is where it sends to front end
         var bodyJSON = JSON.parse(body);
+        console.log("whole info", bodyJSON)
         var items = bodyJSON.itemizations;
         var kitchenOrders = [];
         for (var i = 0; i < items.length; i++){
@@ -118,7 +119,7 @@ app.post('/events', function(req, res, next){
             kitchenOrders.push(item);
           //}
         }
-        console.log("kitchenOrders", bodyJSON);
+        //console.log("kitchenOrders", bodyJSON);
         if (kitchenOrders.length > 0){
           io.emit('order', kitchenOrders);
         }
