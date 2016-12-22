@@ -103,8 +103,9 @@ app.post('/events', function(req, res, next){
         if (e) {
           return console.error('upload failed:', e);
         }
-        //this is where it sends to front end
+
         var bodyJSON = JSON.parse(body);
+        //this is where it sends to front end
         console.log("whole info", bodyJSON)
         var items = bodyJSON.itemizations;
         var kitchenOrders = [];
@@ -119,6 +120,7 @@ app.post('/events', function(req, res, next){
         //console.log("kitchenOrders", bodyJSON);
         if (kitchenOrders.length > 0){
           io.emit('order', kitchenOrders);
+          kitchenOrders = [];
         }
       });
   }
