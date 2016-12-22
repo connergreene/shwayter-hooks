@@ -86,12 +86,12 @@ var REQUEST_HEADERS = {
                         'Content-Type' : 'application/json'
                       };
 
-
+var prevOrderID = '';
 
 app.post('/events', function(req, res, next){
   
   var fullOrder = req.body;
-
+  //real webhook
   if (fullOrder.hasOwnProperty('event_type') && fullOrder['event_type'] == 'PAYMENT_UPDATED'){
       var paymentId = fullOrder['entity_id'];
       var locationId = fullOrder['location_id'];
@@ -105,27 +105,32 @@ app.post('/events', function(req, res, next){
         }
 
         var bodyJSON = JSON.parse(body);
-        //this is where it sends to front end
-        console.log("whole info", bodyJSON)
-        var items = bodyJSON.itemizations;
-        var kitchenOrders = [];
-        for (var i = 0; i < items.length; i++){
-          var item = items[i];
-          var itemCategory = item.item_detail.category_name;
-          console.log("item category:", itemCategory);
-          //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIES'){
-            kitchenOrders.push(item);
-          //}
+
+        if(prevOrderID === bodyJSON.id){
+          bodyJSON = '';
         }
-        //console.log("kitchenOrders", bodyJSON);
-        if (kitchenOrders.length > 0){
-          io.emit('order', kitchenOrders);
-          kitchenOrders = [];
+        else if{
+          console.log("whole info", bodyJSON)
+          var items = bodyJSON.itemizations;
+          var kitchenOrders = [];
+          for (var i = 0; i < items.length; i++){
+            var item = items[i];
+            var itemCategory = item.item_detail.category_name;
+            console.log("item category:", itemCategory);
+            //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIES'){
+              kitchenOrders.push(item);
+            //}
+          }
+          //console.log("kitchenOrders", bodyJSON);
+          prevOrderID = bodyJSON.id;
+          if (kitchenOrders.length > 0){
+            io.emit('order', kitchenOrders);
+          }
         }
       });
   }
+  //test webhook
   else{
-    //test webhook
     console.log(fullOrder);
     io.emit('order', fullOrder);
   }
