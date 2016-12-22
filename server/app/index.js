@@ -110,10 +110,8 @@ app.post('/events', function(req, res, next){
           if (e) {
             return console.error('upload failed:', e);
           }
-
-          var bodyJSON = JSON.parse(body);
-
           else{
+            var bodyJSON = JSON.parse(body);
             //console.log("whole info", bodyJSON)
             var items = bodyJSON.itemizations;
             var kitchenOrders = [];
