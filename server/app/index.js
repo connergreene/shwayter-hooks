@@ -94,6 +94,7 @@ app.post('/events', function(req, res, next){
   //real webhook
   if (fullOrder.hasOwnProperty('event_type') && fullOrder['event_type'] == 'PAYMENT_UPDATED'){
       var paymentId = fullOrder['entity_id'];
+      console.log("payment id: ", )
       var locationId = fullOrder['location_id'];
       var newOptions = {
         url: CONNECT_HOST + '/v1/' + locationId + '/payments/' + paymentId,
@@ -106,11 +107,12 @@ app.post('/events', function(req, res, next){
 
         var bodyJSON = JSON.parse(body);
 
+        //check for double orders by square
         if(prevOrderID === bodyJSON.id){
           bodyJSON = '';
         }
         else{
-          console.log("whole info", bodyJSON)
+          //console.log("whole info", bodyJSON)
           var items = bodyJSON.itemizations;
           var kitchenOrders = [];
           for (var i = 0; i < items.length; i++){
@@ -121,7 +123,6 @@ app.post('/events', function(req, res, next){
               kitchenOrders.push(item);
             //}
           }
-          //console.log("kitchenOrders", bodyJSON);
           prevOrderID = bodyJSON.id;
           if (kitchenOrders.length > 0){
             io.emit('order', kitchenOrders);
