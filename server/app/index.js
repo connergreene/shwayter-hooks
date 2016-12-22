@@ -86,7 +86,7 @@ var REQUEST_HEADERS = {
                         'Content-Type' : 'application/json'
                       };
 
-var prevOrderID = '';
+var prevPaymentID = '';
 
 app.post('/events', function(req, res, next){
   
@@ -96,39 +96,41 @@ app.post('/events', function(req, res, next){
       var paymentId = fullOrder['entity_id'];
       console.log("payment id: ", paymentId)
       var locationId = fullOrder['location_id'];
-      var newOptions = {
-        url: CONNECT_HOST + '/v1/' + locationId + '/payments/' + paymentId,
-        headers: REQUEST_HEADERS
-      };
-      request(newOptions, function(e, r, body){
-        if (e) {
-          return console.error('upload failed:', e);
-        }
-
-        var bodyJSON = JSON.parse(body);
-
-        //check for double orders by square
-        if(prevOrderID === bodyJSON.id){
-          bodyJSON = '';
-        }
-        else{
-          //console.log("whole info", bodyJSON)
-          var items = bodyJSON.itemizations;
-          var kitchenOrders = [];
-          for (var i = 0; i < items.length; i++){
-            var item = items[i];
-            var itemCategory = item.item_detail.category_name;
-            console.log("item category:", itemCategory);
-            //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIES'){
-              kitchenOrders.push(item);
-            //}
+      //check for double orders by square
+      if(prevPaymentID === paymentId){
+        res.end('OK');
+      }
+      else{
+        prevPaymentID = paymentId;
+        var newOptions = {
+          url: CONNECT_HOST + '/v1/' + locationId + '/payments/' + paymentId,
+          headers: REQUEST_HEADERS
+        };
+        request(newOptions, function(e, r, body){
+          if (e) {
+            return console.error('upload failed:', e);
           }
-          prevOrderID = bodyJSON.id;
-          if (kitchenOrders.length > 0){
-            io.emit('order', kitchenOrders);
+
+          var bodyJSON = JSON.parse(body);
+
+          else{
+            //console.log("whole info", bodyJSON)
+            var items = bodyJSON.itemizations;
+            var kitchenOrders = [];
+            for (var i = 0; i < items.length; i++){
+              var item = items[i];
+              var itemCategory = item.item_detail.category_name;
+              console.log("item category:", itemCategory);
+              //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIES'){
+                kitchenOrders.push(item);
+              //}
+            }
+            if (kitchenOrders.length > 0){
+              io.emit('order', kitchenOrders);
+            }
           }
-        }
-      });
+        });        
+      }
   }
   //test webhook
   else{
