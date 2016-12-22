@@ -1,5 +1,6 @@
 <div class="ticket" ng-class="{'green':timer.green, 'yellow':timer.yellow,'red':timer.red}">
-    <div ng-click="remove()" class="ticket-header">{{ ms | date : 'mm:ss' : 'UTC' }}</div>
+    <div ng-click="remove()" class="ticket-header"> {{ time }}
+        {{ ms | date : 'mm:ss' : 'UTC' }}</div>
     <div class="order-items" ng-repeat="item in order">
         <strong>{{item.quantity | num}}-{{item.name}}</strong>
         <p class="note" ng-if="item.notes">{{item.notes}}</p>
