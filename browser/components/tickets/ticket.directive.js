@@ -6,9 +6,12 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
          order: '='
       	},
 		link: function (scope, element, attrs) {
-			scope.ms = 0
+			//time stamp
 			var time = new Date();
 			scope.time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+			
+			//timer
+			scope.ms = 0
 			scope.date = new Date();
 			scope.timer = {green:true, yellow: false, red: false}
 			var time = $interval(function(){
