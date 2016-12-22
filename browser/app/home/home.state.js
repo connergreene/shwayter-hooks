@@ -16,19 +16,3 @@ app.config(function ($stateProvider) {
 		}
 	});
 });
-
-// app.factory('orderFactory', function($http, $sce) {
-// 	return {
-// 		getPayments: function(){
-// 			return $http.get('/proxy')
-// 			.then(function(res){
-// 				console.log(res.data)
-// 			})
-
-
-// 			// $http.get('http://shway.requestcatcher.com/')
-// 			// .then(res => res.data);
-// 		}
-
-// 	};
-// });
