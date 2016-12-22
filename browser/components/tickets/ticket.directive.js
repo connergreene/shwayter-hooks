@@ -7,6 +7,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
       	},
 		link: function (scope, element, attrs) {
 			scope.ms = 0
+			scope.time = Date.now();
 			scope.date = new Date();
 			scope.timer = {green:true, yellow: false, red: false}
 			var time = $interval(function(){
