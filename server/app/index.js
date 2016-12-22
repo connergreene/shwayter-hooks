@@ -94,7 +94,7 @@ app.post('/events', function(req, res, next){
   //real webhook
   if (fullOrder.hasOwnProperty('event_type') && fullOrder['event_type'] == 'PAYMENT_UPDATED'){
       var paymentId = fullOrder['entity_id'];
-      console.log("payment id: ", )
+      console.log("payment id: ", paymentId)
       var locationId = fullOrder['location_id'];
       var newOptions = {
         url: CONNECT_HOST + '/v1/' + locationId + '/payments/' + paymentId,
