@@ -109,7 +109,7 @@ app.post('/events', function(req, res, next){
         if(prevOrderID === bodyJSON.id){
           bodyJSON = '';
         }
-        else if{
+        else{
           console.log("whole info", bodyJSON)
           var items = bodyJSON.itemizations;
           var kitchenOrders = [];
