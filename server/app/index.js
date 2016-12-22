@@ -86,14 +86,15 @@ var REQUEST_HEADERS = {
                         'Content-Type' : 'application/json'
                       };
 
-
+var prevOrderID = '';
 
 app.post('/events', function(req, res, next){
   
   var fullOrder = req.body;
-
+  //real webhook
   if (fullOrder.hasOwnProperty('event_type') && fullOrder['event_type'] == 'PAYMENT_UPDATED'){
       var paymentId = fullOrder['entity_id'];
+      console.log("payment id: ", paymentId)
       var locationId = fullOrder['location_id'];
       var newOptions = {
         url: CONNECT_HOST + '/v1/' + locationId + '/payments/' + paymentId,
@@ -103,27 +104,34 @@ app.post('/events', function(req, res, next){
         if (e) {
           return console.error('upload failed:', e);
         }
-        //this is where it sends to front end
+
         var bodyJSON = JSON.parse(body);
-        console.log("whole info", bodyJSON)
-        var items = bodyJSON.itemizations;
-        var kitchenOrders = [];
-        for (var i = 0; i < items.length; i++){
-          var item = items[i];
-          var itemCategory = item.item_detail.category_name;
-          console.log("item category:", itemCategory);
-          //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIES'){
-            kitchenOrders.push(item);
-          //}
+
+        //check for double orders by square
+        if(prevOrderID === bodyJSON.id){
+          bodyJSON = '';
         }
-        //console.log("kitchenOrders", bodyJSON);
-        if (kitchenOrders.length > 0){
-          io.emit('order', kitchenOrders);
+        else{
+          //console.log("whole info", bodyJSON)
+          var items = bodyJSON.itemizations;
+          var kitchenOrders = [];
+          for (var i = 0; i < items.length; i++){
+            var item = items[i];
+            var itemCategory = item.item_detail.category_name;
+            console.log("item category:", itemCategory);
+            //if (itemCategory === 'FOOD ' || itemCategory === 'SMOOTHIES'){
+              kitchenOrders.push(item);
+            //}
+          }
+          prevOrderID = bodyJSON.id;
+          if (kitchenOrders.length > 0){
+            io.emit('order', kitchenOrders);
+          }
         }
       });
   }
+  //test webhook
   else{
-    //test webhook
     console.log(fullOrder);
     io.emit('order', fullOrder);
   }
