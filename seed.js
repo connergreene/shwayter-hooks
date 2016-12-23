@@ -20,12 +20,20 @@ function randUser () {
 
 function generateAll () {
     var users = [];
-    users.push(new User({
-        name: 'Conner Greene',
-        email: 'csg1922@gmail.com',
-        password: '123',
-        isAdmin: true
-    }));
+    users.push(
+        new User({
+            name: 'Conner Greene',
+            email: 'csg1922@gmail.com',
+            password: 'shnoops',
+            isAdmin: true
+        }),
+        new User({
+            name: 'Ivan Greene',
+            email: 'ivan@pudgeknuckles.com',
+            password: 'shnoops',
+            isAdmin: true
+        })
+    );
     return users;
 }
 
