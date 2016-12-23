@@ -88,6 +88,8 @@ var REQUEST_HEADERS = {
 
 var prevPaymentID = '';
 
+console.log("hi");
+console.log("finding access token", process.env['accessToken'])
 app.post('/events', function(req, res, next){
   
   var fullOrder = req.body;
