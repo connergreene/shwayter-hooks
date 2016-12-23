@@ -44,7 +44,7 @@ passport.deserializeUser(function onEachRequestDoThis(id, bindUserToRequestObjec
 
 
 app.use(function(req, res, next){
-  console.log('this is the user: ', req)
+  console.log('this is the user: ', req.user)
   next(); 
 })
 
