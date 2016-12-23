@@ -47,49 +47,36 @@ app.use(function(req, res, next){
   next(); 
 })
 
-// var headers = {
-//     Authorization : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
-//     Accept : 'application/json'
-// };
-
-// var postData = {
-//   'event_types' : ["PAYMENT_UPDATED"]
-// };
-// var options = {
-//     url: 'https://connect.squareup.com/v1/me/webhooks',
-//     headers: {
-//       'Authorization' : 'Bearer ' + 'sq0atp-prCX8XFu_3QLtK8j-seeaA',
-//       'Accept' : 'application/json',
-//       'Content-Type' : 'application/json'
-//     },
-//     body : "[\"PAYMENT_UPDATED\"]"
-// }
-// request.put(options, function(error, res, body) {
-//     if (error) {
-//       console.log("this is what is printing: ", error);
-//     } else {
-//       console.log(res.body);
-//     }
-// });
-
-var ACCESS_TOKEN = 'sq0atp-prCX8XFu_3QLtK8j-seeaA';
+var accessToken = process.env['accessToken'];
 
 //var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
 
-var WEBHOOK_URL = 'https://shwayter-hooks.herokuapp.com/events';
+var webhookUrl = 'https://shwayter-hooks.herokuapp.com/events';
 
-var CONNECT_HOST = 'https://connect.squareup.com';
+var connectHost = 'https://connect.squareup.com';
 
-var REQUEST_HEADERS = { 
-                        'Authorization' : 'Bearer ' + ACCESS_TOKEN,
-                        'Accept' : 'application/json',
-                        'Content-Type' : 'application/json'
-                      };
+var headers = { 
+                'Authorization' : 'Bearer ' + accessToken,
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+              };
+
+var options = {
+    url: 'https://connect.squareup.com/v1/me/webhooks',
+    headers: headers,
+    body : "[\"PAYMENT_UPDATED\"]"
+}
+request.put(options, function(error, res, body) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(res.body);
+    }
+});
+
 
 var prevPaymentID = '';
 
-console.log("hi");
-console.log("finding access token", process.env['accessToken'])
 app.post('/events', function(req, res, next){
   
   var fullOrder = req.body;
@@ -104,11 +91,11 @@ app.post('/events', function(req, res, next){
       }
       else{
         prevPaymentID = paymentId;
-        var newOptions = {
-          url: CONNECT_HOST + '/v1/' + locationId + '/payments/' + paymentId,
-          headers: REQUEST_HEADERS
+        var payOptions = {
+          url: connectHost + '/v1/' + locationId + '/payments/' + paymentId,
+          headers: headers
         };
-        request(newOptions, function(e, r, body){
+        request(payOptions, function(e, r, body){
           if (e) {
             return console.error('upload failed:', e);
           }
