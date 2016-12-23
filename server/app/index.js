@@ -10,7 +10,7 @@ var passport = require('passport');
 var session = require('express-session');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
+var MemoryStore = require('session-memory-store')(session);
 
 app.use(require('./logging.middleware'));
 
@@ -21,7 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({ type: 'application/*+json' }))
 
 app.use(session({
-  secret: 'shway'
+  secret: 'shway',
+  store: new MemoryStore(options)
 }));
 
 app.use(passport.initialize());
