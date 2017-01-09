@@ -94,15 +94,7 @@ app.post('/events', function(req, res, next){
         prevPaymentID = paymentId;
 
         //getting customer's name
-        var transactionOptions = {
-          url: connectHost + '/v2/' + locationId + '/transactions/' + paymentId,
-          headers: headers
-        };
-        request(transactionOptions, function(e, r, body){
-            var transaction = JSON.parse(body);
-            var transactionId =  transaction.split("/").pop(-1);
-            console.log("transaction id:", transactionId);
-        });
+
 
         var payOptions = {
           url: connectHost + '/v1/' + locationId + '/payments/' + paymentId,
@@ -114,8 +106,19 @@ app.post('/events', function(req, res, next){
           }
           else{
             var bodyJSON = JSON.parse(body);
+            var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
+            console.log("transaction id:", transactionId);
+            
+            var transactionOptions = {
+              url: connectHost + '/v2/' + locationId + '/transactions/' + transactionId,
+              headers: headers
+            };
+            request(transactionOptions, function(e, r, body){
+                var transaction = JSON.parse(body);
+                var transactionId =  transaction.split("/").pop(-1);
+                console.log("transaction id:", transactionId);
+            });
 
-            console.log("transaction id:", bodyJSON.payment_url);
             //console.log("whole info", bodyJSON)
             var items = bodyJSON.itemizations;
             var kitchenOrders = [];
