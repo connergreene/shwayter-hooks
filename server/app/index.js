@@ -102,9 +102,38 @@ app.post('/events', function(req, res, next){
           }
           else{
             var bodyJSON = JSON.parse(body);
-            //console.log("whole info", bodyJSON)
             var items = bodyJSON.itemizations;
             var kitchenOrders = [];
+
+            console.log("this is the transaction type:", typeof bodyJSON.payment_url)
+            console.log("payment url:", bodyJSON.payment_url)
+            var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
+            console.log("transaction id:", transactionId);
+            console.log("location id:", locationId);
+            var transactionOptions = {
+              url: connectHost + '/v2/' + 'locations/' + locationId + '/transactions/' + transactionId,
+              headers: headers
+            };
+            request(transactionOptions, function(e, r, body){
+                var transaction = JSON.parse(body).transaction;
+                console.log("what is this?", JSON.parse(body));
+                console.log("this is the type:", typeof transaction.tenders);
+                console.log("this is tenders:", transaction.tenders);
+                var customerId = transaction.client_id;
+                console.log("costumer id:", customerId);
+                var customerOptions = {
+                  url: connectHost + '/v2/' + 'costumers/' + customerId,
+                  headers: headers
+                };
+                request(customerOptions, function(e, r, body){
+                  var customer = JSON.parse(body);
+                  var customerName = customer.given_name + ' ' + customer.family_name;
+                  console.log("customer name:", customerName);
+                  kitchenOrders.push(customerName);
+                })
+            });
+
+            //console.log("whole info", bodyJSON)
             for (var i = 0; i < items.length; i++){
               var item = items[i];
               var itemCategory = item.item_detail.category_name;
