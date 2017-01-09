@@ -106,6 +106,7 @@ app.post('/events', function(req, res, next){
           }
           else{
             var bodyJSON = JSON.parse(body);
+            console.log("this is the type:", typeof bodyJSON.payment_url)
             var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
             console.log("transaction id:", transactionId);
             
@@ -115,8 +116,8 @@ app.post('/events', function(req, res, next){
             };
             request(transactionOptions, function(e, r, body){
                 var transaction = JSON.parse(body);
-                var transactionId =  transaction.split("/").pop(-1);
-                console.log("transaction id:", transactionId);
+                var customerId = transaction.tenders[0].customer_id;
+                console.log("costumer id:", customerId);
             });
 
             //console.log("whole info", bodyJSON)
