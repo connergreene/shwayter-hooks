@@ -92,10 +92,6 @@ app.post('/events', function(req, res, next){
       }
       else{
         prevPaymentID = paymentId;
-
-        //getting customer's name
-
-
         var payOptions = {
           url: connectHost + '/v1/' + locationId + '/payments/' + paymentId,
           headers: headers
@@ -106,9 +102,9 @@ app.post('/events', function(req, res, next){
           }
           else{
             var bodyJSON = JSON.parse(body);
-            console.log("this is the type:", typeof bodyJSON.payment_url)
+            //console.log("this is the type:", typeof bodyJSON.payment_url)
             var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
-            console.log("transaction id:", transactionId);
+            //console.log("transaction id:", transactionId);
             
             var transactionOptions = {
               url: connectHost + '/v2/' + locationId + '/transactions/' + transactionId,
@@ -116,6 +112,8 @@ app.post('/events', function(req, res, next){
             };
             request(transactionOptions, function(e, r, body){
                 var transaction = JSON.parse(body);
+                console.log("this is the type:", typeof transaction.tenders);
+                console.log("this is tenders:", transaction.tenders);
                 var customerId = transaction.tenders[0].customer_id;
                 console.log("costumer id:", customerId);
             });
