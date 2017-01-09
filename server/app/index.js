@@ -100,7 +100,8 @@ app.post('/events', function(req, res, next){
         };
         request(transactionOptions, function(e, r, body){
             var transaction = JSON.parse(body);
-            console.log("this is the transaction:", transaction);
+            var transactionId =  transaction.split("/").pop(-1);
+            console.log("transaction id:", transactionId);
         });
 
         var payOptions = {
