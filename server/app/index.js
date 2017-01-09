@@ -102,9 +102,9 @@ app.post('/events', function(req, res, next){
           }
           else{
             var bodyJSON = JSON.parse(body);
-            //console.log("this is the type:", typeof bodyJSON.payment_url)
+            console.log("this is the transaction type:", typeof bodyJSON.payment_url)
             var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
-            //console.log("transaction id:", transactionId);
+            console.log("transaction id:", transactionId);
             
             var transactionOptions = {
               url: connectHost + '/v2/' + locationId + '/transactions/' + transactionId,
