@@ -113,6 +113,8 @@ app.post('/events', function(req, res, next){
           }
           else{
             var bodyJSON = JSON.parse(body);
+
+            console.log("transaction id:", bodyJSON.payment_url);
             //console.log("whole info", bodyJSON)
             var items = bodyJSON.itemizations;
             var kitchenOrders = [];
