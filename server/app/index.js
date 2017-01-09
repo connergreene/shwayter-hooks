@@ -92,6 +92,17 @@ app.post('/events', function(req, res, next){
       }
       else{
         prevPaymentID = paymentId;
+
+        //getting customer's name
+        var transactionOptions = {
+          url: connectHost + '/v2/' + locationId + '/transactions/' + paymentId,
+          headers: headers
+        };
+        request(transactionOptions, function(e, r, body){
+            var transaction = JSON.parse(body);
+            console.log("this is the transaction:", transaction);
+        });
+
         var payOptions = {
           url: connectHost + '/v1/' + locationId + '/payments/' + paymentId,
           headers: headers

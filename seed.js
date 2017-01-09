@@ -7,16 +7,16 @@ var chance = require('chance')(123),
 var db = require('./server/db');
 var User = require('./server/api/users/user.model');
 
-function randUser () {
-    return new User({
-        name: [chance.first(), chance.last()].join(' '),
-        photo: randPhoto(),
-        phone: chance.phone(),
-        email: emails.pop(),
-        password: chance.word(),
-        isAdmin: chance.weighted([true, false], [5, 95])
-    });
-}
+// function randUser () {
+//     return new User({
+//         name: [chance.first(), chance.last()].join(' '),
+//         photo: randPhoto(),
+//         phone: chance.phone(),
+//         email: emails.pop(),
+//         password: chance.word(),
+//         isAdmin: chance.weighted([true, false], [5, 95])
+//     });
+// }
 
 function generateAll () {
     var users = [];
