@@ -103,11 +103,11 @@ app.post('/events', function(req, res, next){
           else{
             var bodyJSON = JSON.parse(body);
             console.log("this is the transaction type:", typeof bodyJSON.payment_url)
+            console.log("payment url:", bodyJSON.payment_url)
             var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
             console.log("transaction id:", transactionId);
-            
             var transactionOptions = {
-              url: connectHost + '/v2/' + locationId + '/transactions/' + transactionId,
+              url: connectHost + '/v2/' + 'locations/' locationId + '/transactions/' + transactionId,
               headers: headers
             };
             request(transactionOptions, function(e, r, body){
@@ -116,6 +116,15 @@ app.post('/events', function(req, res, next){
                 console.log("this is tenders:", transaction.tenders);
                 var customerId = transaction.tenders[0].customer_id;
                 console.log("costumer id:", customerId);
+                var customerOptions = {
+                  url: connectHost + '/v2/' + 'costumers/' + customerId,
+                  headers: headers
+                };
+                request(customerOptions, function(e, r, body){
+                  var customer = JSON.parse(body);
+                  var customerName = customer.given_name + ' ' + customer.family_name;
+                  console.log("customer name:", customerName);
+                })
             });
 
             //console.log("whole info", bodyJSON)
