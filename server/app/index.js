@@ -102,6 +102,9 @@ app.post('/events', function(req, res, next){
           }
           else{
             var bodyJSON = JSON.parse(body);
+            var items = bodyJSON.itemizations;
+            var kitchenOrders = [];
+
             console.log("this is the transaction type:", typeof bodyJSON.payment_url)
             console.log("payment url:", bodyJSON.payment_url)
             var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
@@ -112,6 +115,7 @@ app.post('/events', function(req, res, next){
             };
             request(transactionOptions, function(e, r, body){
                 var transaction = JSON.parse(body);
+                console.log("what is this?", transaction);
                 console.log("this is the type:", typeof transaction.tenders);
                 console.log("this is tenders:", transaction.tenders);
                 var customerId = transaction.tenders[0].customer_id;
@@ -124,12 +128,11 @@ app.post('/events', function(req, res, next){
                   var customer = JSON.parse(body);
                   var customerName = customer.given_name + ' ' + customer.family_name;
                   console.log("customer name:", customerName);
+                  kitchenOrders.push(customerName);
                 })
             });
 
             //console.log("whole info", bodyJSON)
-            var items = bodyJSON.itemizations;
-            var kitchenOrders = [];
             for (var i = 0; i < items.length; i++){
               var item = items[i];
               var itemCategory = item.item_detail.category_name;
