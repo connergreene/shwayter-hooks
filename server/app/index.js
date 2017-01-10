@@ -107,7 +107,7 @@ app.post('/events', function(req, res, next){
             var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
             console.log("transaction id:", transactionId);
             var transactionOptions = {
-              url: connectHost + '/v2/' + 'locations/' locationId + '/transactions/' + transactionId,
+              url: connectHost + '/v2/' + 'locations/' + locationId + '/transactions/' + transactionId,
               headers: headers
             };
             request(transactionOptions, function(e, r, body){
