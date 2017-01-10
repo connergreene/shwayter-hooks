@@ -119,7 +119,7 @@ app.post('/events', function(req, res, next){
                 console.log("what is this?", transaction);
                 console.log("this is the type:", typeof transaction.tenders);
                 console.log("this is tenders:", transaction.tenders);
-                var customerId = transaction.tenders[0].customer_id;
+                var customerId = transaction.client_id;
                 console.log("costumer id:", customerId);
                 var customerOptions = {
                   url: connectHost + '/v2/' + 'costumers/' + customerId,
