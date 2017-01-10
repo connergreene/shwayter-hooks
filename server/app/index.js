@@ -110,14 +110,12 @@ app.post('/events', function(req, res, next){
             var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
             console.log("transaction id:", transactionId);
             console.log("location id:", locationId);
-            // https://connect.squareup.com/v2/locations/LOCATION_ID/transactions/TRANSACTION_ID
-            // https://connect.squareup.com/v2/locations/{location_id}/transactions
             var transactionOptions = {
               url: connectHost + '/v2/' + 'locations/' + locationId + '/transactions/' + transactionId,
               headers: headers
             };
             request(transactionOptions, function(e, r, body){
-                var transaction = JSON.parse(body);
+                var transaction = JSON.parse(body).transaction;
                 console.log("what is this?", transaction);
                 console.log("this is the type:", typeof transaction.tenders);
                 console.log("this is tenders:", transaction.tenders);
