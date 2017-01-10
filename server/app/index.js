@@ -104,7 +104,6 @@ app.post('/events', function(req, res, next){
             var bodyJSON = JSON.parse(body);
             var items = bodyJSON.itemizations;
             var kitchenOrders = [];
-
             // console.log("this is the transaction type:", typeof bodyJSON.payment_url)
             // console.log("payment url:", bodyJSON.payment_url)
             // var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
