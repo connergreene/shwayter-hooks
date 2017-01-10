@@ -116,7 +116,7 @@ app.post('/events', function(req, res, next){
             };
             request(transactionOptions, function(e, r, body){
                 var transaction = JSON.parse(body).transaction;
-                console.log("what is this?", transaction);
+                console.log("what is this?", JSON.parse(body));
                 console.log("this is the type:", typeof transaction.tenders);
                 console.log("this is tenders:", transaction.tenders);
                 var customerId = transaction.client_id;
