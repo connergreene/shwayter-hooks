@@ -162,7 +162,7 @@ app.use('/auth', require('../auth/auth.router'));
 app.use('/api', require('../api/api.router'));
 
 
-var validFrontendRoutes = ['/', '/users', '/users/:id', '/login', '/events'];
+var validFrontendRoutes = ['/', '/users', '/users/:id', '/kds', '/events'];
 var indexPath = path.join(__dirname, '..', '..', 'public', 'index.html');
 console.log(indexPath);
 validFrontendRoutes.forEach(function (stateRoute) {

@@ -2,7 +2,7 @@
 
 app.config(function ($stateProvider) {
 	$stateProvider.state('home', {
-		url: '/',
+		url: '/kds',
 		templateUrl: '/browser/app/home/home.html',
 		controller: function($scope, $http){
 			var socket = io.connect();
