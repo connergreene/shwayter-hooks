@@ -15,8 +15,8 @@ app.directive('navbar', function ($state, $location, Auth) {
 			};
 			
 			scope.submitLogout = function () {
+				$state.go('home');
 				Auth.logout();
-				$state.go('home')
 			};
 		}
 	}
