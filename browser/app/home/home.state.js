@@ -4,7 +4,10 @@ app.config(function ($stateProvider) {
 	$stateProvider.state('home', {
 		url: '/kds',
 		templateUrl: '/browser/app/home/home.html',
-		controller: function($scope, $http){
+		controller: function($scope, $http, $state, Auth){
+			if (!Auth.getCurrentUser()){
+				$state.go('home');
+			}
 			var socket = io.connect();
 			$scope.tickets = [];
 			socket.on('order', function (order) {
