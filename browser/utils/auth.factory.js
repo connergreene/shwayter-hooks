@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('Auth', function ($http, $rootScope) {
+app.factory('Auth', function ($http, $rootScope, $state) {
 
   function extractData(res){
     return res.data; 
