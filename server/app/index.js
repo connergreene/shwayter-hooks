@@ -76,6 +76,7 @@ request.put(options, function(error, res, body) {
 });
 
 
+//check for double orders by square
 var prevPaymentID = '';
 
 app.post('/events', function(req, res, next){
@@ -84,9 +85,7 @@ app.post('/events', function(req, res, next){
   //real webhook
   if (fullOrder.hasOwnProperty('event_type') && fullOrder['event_type'] == 'PAYMENT_UPDATED'){
       var paymentId = fullOrder['entity_id'];
-      console.log("payment id: ", paymentId)
       var locationId = fullOrder['location_id'];
-      //check for double orders by square
       if(prevPaymentID === paymentId){
         res.end('OK');
       }
