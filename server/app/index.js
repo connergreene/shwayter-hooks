@@ -67,6 +67,7 @@ var options = {
     headers: headers,
     body : "[\"PAYMENT_UPDATED\"]"
 }
+//give webhook permissions
 request.put(options, function(error, res, body) {
     if (error) {
       console.log(error);
