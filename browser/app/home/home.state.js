@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
 		controller: function($scope, $http, $state, Auth){
 			console.log("user:", Auth.getCurrentUser())
 			if (!Auth.getCurrentUser()){
-				$state.go('home');
+				$state.go('login');
 			}
 			var socket = io.connect();
 			$scope.tickets = [];
