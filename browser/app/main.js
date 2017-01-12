@@ -26,12 +26,13 @@ app.run(function($rootScope, Auth, $state){
 			$state.go('home');
 		}
 	}
+	console.log("auth1", Auth)
 
 	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, Auth) {
 		if (typeof toState.authenticate === 'undefined') {
 			return;
 		}
-		console.dir(Auth)
+		console.log("auth2", Auth)
 		Auth
 		.getCurrentUser()
 		.then(function (currentUser) {
