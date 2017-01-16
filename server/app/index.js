@@ -27,7 +27,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session()); 
-
+require('./passport.js')(passport);
 
 passport.serializeUser(function onLogin(user, attachThisToTheSession){
     attachThisToTheSession(null, user._id)

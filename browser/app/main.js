@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('shwayter', ['ui.router']);
+var app = angular.module('shwayter', ['ui.router', 'ngCookies']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
@@ -26,9 +26,9 @@ app.run(function($rootScope, Auth, $state){
 			$state.go('home');
 		}
 	}
-	console.log("auth1", Auth)
+	
 
-	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, Auth) {
 		if (typeof toState.authenticate === 'undefined') {
 			return;
 		}

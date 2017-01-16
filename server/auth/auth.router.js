@@ -3,6 +3,7 @@
 var HttpError = require('../utils/HttpError');
 var router = require('express').Router();
 var User = require('../api/users/user.model');
+var passport = require('passport');
 
 
 router.post('/login', function (req, res, next) {
