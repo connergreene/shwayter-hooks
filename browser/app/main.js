@@ -18,6 +18,8 @@ app.run(function($rootScope, Auth, $state){
   // every time the user refreshes the page
   // console.log('in run block, getting the user') 
   // Auth.refreshCurrentUser();
+	$rootScope.user = {};
+	Auth.requestCurrentUser();
 	function preventStateChange (message, redirect) {
 		if (redirect) {
 			$state.go(redirect);
