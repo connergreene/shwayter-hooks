@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('shwayter', ['ui.router']);
+var app = angular.module('shwayter', ['ui.router', 'ngCookies']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
@@ -18,6 +18,8 @@ app.run(function($rootScope, Auth, $state){
   // every time the user refreshes the page
   // console.log('in run block, getting the user') 
   // Auth.refreshCurrentUser();
+	$rootScope.user = {};
+	//Auth.requestCurrentUser();
 	function preventStateChange (message, redirect) {
 		if (redirect) {
 			$state.go(redirect);
@@ -31,7 +33,7 @@ app.run(function($rootScope, Auth, $state){
 		if (typeof toState.authenticate === 'undefined') {
 			return;
 		}
-		console.log("auth", Auth)
+		console.log("current user", Auth.getCurrentUser())
 		Auth
 		.getCurrentUser()
 		.then(function (currentUser) {

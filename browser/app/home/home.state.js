@@ -9,6 +9,7 @@ app.config(function ($stateProvider) {
 			// if (!Auth.getCurrentUser()){
 			// 	$state.go('login');
 			// }
+			console.log("current user in login", Auth.getCurrentUser())
 			var socket = io.connect();
 			$scope.tickets = [];
 			socket.on('order', function (order) {
