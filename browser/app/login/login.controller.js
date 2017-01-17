@@ -1,13 +1,10 @@
 'use strict';
 
-app.controller('LoginCtrl', function ($scope, Auth, $state) {
-  if(Auth.getCurrentUser()){
-    $state.go('home')
-  }
+app.controller('LoginCtrl', function ($scope, AuthService, $state) {
 
   $scope.submitLogin = function(){
     //grab user data via ng-model
-    Auth.login($scope.userData)
+    AuthService.login($scope.userData)
     .then(function(){
       $state.go('home')
     }, function(){
