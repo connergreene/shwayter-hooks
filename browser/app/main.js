@@ -27,7 +27,7 @@ app.run(function($rootScope, Auth, $state){
 		}
 	}
 
-	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, Auth) {
+	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
 		if (typeof toState.authenticate === 'undefined') {
 			return;
 		}
