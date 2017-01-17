@@ -2,124 +2,6 @@
 
 var app = angular.module('shwayter', ['ui.router']);
 
-// AUTH_EVENTS is used throughout our app to
-// broadcast and listen from and to the $rootScope
-// for important events about authentication flow.
-app.constant('AUTH_EVENTS', {
-    loginSuccess: 'auth-login-success',
-    loginFailed: 'auth-login-failed',
-    logoutSuccess: 'auth-logout-success',
-    sessionTimeout: 'auth-session-timeout',
-    notAuthenticated: 'auth-not-authenticated',
-    notAuthorized: 'auth-not-authorized'
-});
-
-app.factory('AuthInterceptor', function ($rootScope, AUTH_EVENTS) {
-    var statusDict = {
-        401: AUTH_EVENTS.notAuthenticated,
-        403: AUTH_EVENTS.notAuthorized,
-        419: AUTH_EVENTS.sessionTimeout,
-        440: AUTH_EVENTS.sessionTimeout
-    };
-    return {
-        responseError: function (response) {
-            $rootScope.$broadcast(statusDict[response.status], response);
-            return $q.reject(response)
-        }
-    };
-});
-
-app.config(function ($httpProvider) {
-    $httpProvider.interceptors.push([
-        '$injector',
-        function ($injector) {
-            return $injector.get('AuthInterceptor');
-        }
-    ]);
-});
-
-app.service('AuthService', function ($http, Session, $rootScope, AUTH_EVENTS, $q) {
-
-    function onSuccessfulLogin(response) {
-        var data = response.data;
-        Session.create(data.id, data.user);
-        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-        return data.user;
-    }
-
-    // Uses the session factory to see if an
-    // authenticated user is currently registered.
-    this.isAuthenticated = function () {
-        return !!Session.user;
-    };
-
-    this.getLoggedInUser = function (fromServer) {
-
-        // If an authenticated session exists, we
-        // return the user attached to that session
-        // with a promise. This ensures that we can
-        // always interface with this method asynchronously.
-
-        // Optionally, if true is given as the fromServer parameter,
-        // then this cached value will not be used.
-
-        if (this.isAuthenticated() && fromServer !== true) {
-            return $q.when(Session.user);
-        }
-
-        // Make request GET /session.
-        // If it returns a user, call onSuccessfulLogin with the response.
-        // If it returns a 401 response, we catch it and instead resolve to null.
-        return $http.get('/session').then(onSuccessfulLogin).catch(function () {
-            return null;
-        });
-
-    };
-
-    this.login = function (credentials) {
-        return $http.post('/login', credentials)
-            .then(onSuccessfulLogin)
-            .catch(function () {
-                return $q.reject({ message: 'Invalid login credentials.' });
-            });
-    };
-
-    this.logout = function () {
-        return $http.get('/logout').then(function () {
-            Session.destroy();
-            $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-        });
-    };
-
-});
-
-app.service('Session', function ($rootScope, AUTH_EVENTS) {
-
-    var self = this;
-
-    $rootScope.$on(AUTH_EVENTS.notAuthenticated, function () {
-        self.destroy();
-    });
-
-    $rootScope.$on(AUTH_EVENTS.sessionTimeout, function () {
-        self.destroy();
-    });
-
-    this.id = null;
-    this.user = null;
-
-    this.create = function (sessionId, user) {
-        this.id = sessionId;
-        this.user = user;
-    };
-
-    this.destroy = function () {
-        this.id = null;
-        this.user = null;
-    };
-
-});
-
 app.config(function ($urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$urlRouterProvider.otherwise('/');
@@ -131,46 +13,42 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 
 });
 
-// This app.run is for controlling access to specific states.
-app.run(function ($rootScope, Auth, $state) {
+app.run(function($rootScope, Auth, $state){
+  // re retrieve user from backend 
+  // every time the user refreshes the page
+  // console.log('in run block, getting the user') 
+  // Auth.refreshCurrentUser();
+	function preventStateChange (message, redirect) {
+		if (redirect) {
+			$state.go(redirect);
+		}
+		else {
+			$state.go('home');
+		}
+	}
 
-    // The given state requires an authenticated user.
-    var destinationStateRequiresAuth = function (state) {
-        return state.data && state.data.authenticate;
-    };
+	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, Auth) {
+		if (typeof toState.authenticate === 'undefined') {
+			return;
+		}
+		console.log("auth", Auth)
+		Auth
+		.getCurrentUser()
+		.then(function (currentUser) {
+			var isLoggedIn = !!currentUser._id;
 
-    // $stateChangeStart is an event fired
-    // whenever the process of changing a state begins.
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+			var isAuthorized = isLoggedIn && currentUser._id.toString() === toParams.id;
 
-        if (!destinationStateRequiresAuth(toState)) {
-            // The destination state does not require authentication
-            // Short circuit with return.
-            return;
-        }
-
-        if (Auth.isAuthenticated()) {
-            // The user is authenticated.
-            // Short circuit with return.
-            return;
-        }
-
-        // Cancel navigating to new state.
-        event.preventDefault();
-
-        Auth.getLoggedInUser().then(function (user) {
-            // If a user is retrieved, then renavigate to the destination
-            // (the second time, AuthService.isAuthenticated() will work)
-            // otherwise, if no user is logged in, go to "login" state.
-            if (user) {
-                $state.go(toState.name, toParams);
-            } else {
-                $state.go('login');
-            }
-        });
-
-    });
-
-});
+			if (toState.authenticate.loggedOut) { // this route requires you to be logged out
+				if (isLoggedIn) {
+					preventStateChange("You're logged in.");
+				}
+			}
+			else if (!isLoggedIn) {
+				preventStateChange('Must be logged in to access this route.', 'login');
+			}
+		})
+	});
+})
 
 
