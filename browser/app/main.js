@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('shwayter', ['ui.router']);
+var app = angular.module('shwayter', ['ui.router', 'ngCookies']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
