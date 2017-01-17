@@ -6,11 +6,12 @@ var User = require('../api/users/user.model');
 var request = require('request');
 var bodyParser = require('body-parser');
 var _ = require('lodash');
+var mongoose = require('mongoose');
 var passport = require('passport'); 
 var session = require('express-session');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var MemoryStore = require('session-memory-store')(session);
+var MongoStore = require('connect-mongo')(session);
 
 app.use(require('./logging.middleware'));
 
@@ -22,12 +23,13 @@ app.use(bodyParser.json({ type: 'application/*+json' }))
 
 app.use(session({
   secret: 'shway',
-  store: new MemoryStore(options)
+  store: new MongoStore({mongooseConnection: mongoose.connection}),
+  resave: false,
+  saveUninitialized: false
 }));
 
 app.use(passport.initialize());
 app.use(passport.session()); 
-//require('./passport.js')(passport);
 
 passport.serializeUser(function onLogin(user, attachThisToTheSession){
     attachThisToTheSession(null, user._id)
@@ -42,11 +44,14 @@ passport.deserializeUser(function onEachRequestDoThis(id, bindUserToRequestObjec
     })
 });
 
-
-app.use(function(req, res, next){
-  console.log('this is the user: ', req.user)
-  next(); 
-})
+app.get('/session', function (req, res) {
+    if (req.user) {
+      res.send({ user: req.user.sanitize() });
+    } 
+    else {
+      res.status(401).send('No authenticated user.');
+    }
+});
 
 var accessToken = process.env['accessToken'];
 
