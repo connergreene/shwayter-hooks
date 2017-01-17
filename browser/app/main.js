@@ -14,7 +14,7 @@ app.constant('AUTH_EVENTS', {
     notAuthorized: 'auth-not-authorized'
 });
 
-app.factory('AuthInterceptor', function ($rootScope, $q, AUTH_EVENTS) {
+app.factory('AuthInterceptor', function ($rootScope, AUTH_EVENTS) {
     var statusDict = {
         401: AUTH_EVENTS.notAuthenticated,
         403: AUTH_EVENTS.notAuthorized,

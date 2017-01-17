@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('Auth', function ($http, $q, $rootScope) {
+app.factory('Auth', function ($http, $q,$rootScope) {
 
   function extractData(res){
     return res.data; 
@@ -29,7 +29,7 @@ app.factory('Auth', function ($http, $q, $rootScope) {
         return currentUser; 
       }
       else{
-        return $q.when({});
+        return {};
       }
     }, 
     refreshCurrentUser: function(){
