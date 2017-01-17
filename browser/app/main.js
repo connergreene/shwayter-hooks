@@ -32,7 +32,7 @@ app.run(function($rootScope, Auth, $state){
 		if (typeof toState.authenticate === 'undefined') {
 			return;
 		}
-		console.log("auth2", Auth)
+		console.log("auth2", Auth.getCurrentUser())
 		Auth
 		.getCurrentUser()
 		.then(function (currentUser) {
