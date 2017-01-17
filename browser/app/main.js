@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('shwayter', ['ui.router', 'ngCookies']);
+var app = angular.module('shwayter', ['ui.router', 'PreBuilt']);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
@@ -13,43 +13,46 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 
 });
 
-app.run(function($rootScope, Auth, $state){
-  // re retrieve user from backend 
-  // every time the user refreshes the page
-  // console.log('in run block, getting the user') 
-  // Auth.refreshCurrentUser();
-	function preventStateChange (message, redirect) {
-		if (redirect) {
-			$state.go(redirect);
-		}
-		else {
-			$state.go('home');
-		}
-	}
+// This app.run is for controlling access to specific states.
+app.run(function ($rootScope, AuthService, $state) {
 
+    // The given state requires an authenticated user.
+    var destinationStateRequiresAuth = function (state) {
+        return state.data && state.data.authenticate;
+    };
 
-	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-		if (typeof toState.authenticate === 'undefined') {
-			return;
-		}
-		console.log("auth2", Auth.getCurrentUser())
-		Auth
-		.getCurrentUser()
-		.then(function (currentUser) {
-			var isLoggedIn = !!currentUser._id;
+    // $stateChangeStart is an event fired
+    // whenever the process of changing a state begins.
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
 
-			var isAuthorized = isLoggedIn && currentUser._id.toString() === toParams.id;
+        if (!destinationStateRequiresAuth(toState)) {
+            // The destination state does not require authentication
+            // Short circuit with return.
+            return;
+        }
 
-			if (toState.authenticate.loggedOut) { // this route requires you to be logged out
-				if (isLoggedIn) {
-					preventStateChange("You're logged in.");
-				}
-			}
-			else if (!isLoggedIn) {
-				preventStateChange('Must be logged in to access this route.', 'login');
-			}
-		})
-	});
-})
+        if (AuthService.isAuthenticated()) {
+            // The user is authenticated.
+            // Short circuit with return.
+            return;
+        }
+
+        // Cancel navigating to new state.
+        event.preventDefault();
+
+        AuthService.getLoggedInUser().then(function (user) {
+            // If a user is retrieved, then renavigate to the destination
+            // (the second time, AuthService.isAuthenticated() will work)
+            // otherwise, if no user is logged in, go to "login" state.
+            if (user) {
+                $state.go(toState.name, toParams);
+            } else {
+                $state.go('login');
+            }
+        });
+
+    });
+
+});
 
 
