@@ -132,7 +132,7 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 });
 
 // This app.run is for controlling access to specific states.
-app.run(function ($rootScope, AuthService, $state) {
+app.run(function ($rootScope, Auth, $state) {
 
     // The given state requires an authenticated user.
     var destinationStateRequiresAuth = function (state) {
@@ -149,7 +149,7 @@ app.run(function ($rootScope, AuthService, $state) {
             return;
         }
 
-        if (AuthService.isAuthenticated()) {
+        if (Auth.isAuthenticated()) {
             // The user is authenticated.
             // Short circuit with return.
             return;
@@ -158,7 +158,7 @@ app.run(function ($rootScope, AuthService, $state) {
         // Cancel navigating to new state.
         event.preventDefault();
 
-        AuthService.getLoggedInUser().then(function (user) {
+        Auth.getLoggedInUser().then(function (user) {
             // If a user is retrieved, then renavigate to the destination
             // (the second time, AuthService.isAuthenticated() will work)
             // otherwise, if no user is logged in, go to "login" state.
