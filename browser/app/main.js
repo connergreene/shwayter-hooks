@@ -6,20 +6,17 @@ app.config(function ($urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$urlRouterProvider.otherwise('/');
 
-  $urlRouterProvider.when('/auth/:provider', function(){
-    window.location.reload(); 
-  });
+  // $urlRouterProvider.when('/auth/:provider', function(){
+  //   window.location.reload(); 
+  // });
 
 
 });
 
 app.run(function($rootScope, Auth, $state){
   // re retrieve user from backend 
-  // every time the user refreshes the page
-  // console.log('in run block, getting the user') 
-  // Auth.refreshCurrentUser();
+  // every time the user refreshes the page;
 	$rootScope.user = {};
-	//Auth.requestCurrentUser();
 	function preventStateChange (message, redirect) {
 		if (redirect) {
 			$state.go(redirect);
@@ -33,7 +30,6 @@ app.run(function($rootScope, Auth, $state){
 		if (typeof toState.authenticate === 'undefined') {
 			return;
 		}
-		console.log("current user", Auth.getCurrentUser())
 		Auth
 		.getCurrentUser()
 		.then(function (currentUser) {
