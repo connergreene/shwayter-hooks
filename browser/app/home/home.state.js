@@ -18,6 +18,9 @@ app.config(function ($stateProvider) {
 					$scope.$index++;
 				});
  			});
+		},
+		authenticate: {
+			loggedOut: false  //required to be logged in
 		}
 	});
 });

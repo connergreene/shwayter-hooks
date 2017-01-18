@@ -2,15 +2,15 @@
 
 app.factory('Auth', function ($http, $cookies, $q, $rootScope) {
 
-  function extractData(res){
-    return res.data; 
-  }
+  // function extractData(res){
+  //   return res.data; 
+  // }
 
-  var currentUser; 
-  function setCurrentUser(user){
-    currentUser = user; 
-    return user; 
-  }
+  // var currentUser; 
+  // function setCurrentUser(user){
+  //   currentUser = user; 
+  //   return user; 
+  // }
   // public API
   return {  
     // login: function(creds){
