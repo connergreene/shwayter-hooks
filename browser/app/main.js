@@ -17,6 +17,7 @@ app.run(function($rootScope, Auth, $state){
   // re retrieve user from backend 
   // every time the user refreshes the page;
 	$rootScope.user = {};
+	Auth.requestCurrentUser();
 	function preventStateChange (message, redirect) {
 		if (redirect) {
 			$state.go(redirect);
