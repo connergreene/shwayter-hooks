@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: -webkit-min-content; }
+  min-width: -webkit-min-content;
+  margin: 10% auto;
+  background-color: gray; }
   .signin-container > * {
     width: 33%; }
   .signin-container .local {
@@ -13,4 +15,4 @@
   .signin-container {
     flex-direction: column; }
     .signin-container > * {
-      width: 100%; } }
+      width: 50%; } }
