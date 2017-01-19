@@ -92,11 +92,11 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope) {
 
     isLoggedIn: function(){
       console.log('user', $rootScope.user)
-      if ($rootScope.user !== {}){
-        return true;
+      if (!$rootScope.user){
+        return false;
       }
       else{
-        return false;
+        return true;
       }
     },
 
