@@ -11,11 +11,9 @@ app.directive('navbar', function ($state, $location, Auth) {
 				return path.startsWith(partial);
 			};
 
+			console.log("path", $location.path())
 			scope.isLoggedIn = function () {
-				return Auth.getCurrentUser().then(function(res){
-					console.log("user?", res)
-					return res;
-				});
+				return Boolean(Auth.getCurrentUser());
 			};
 			
 			scope.submitLogout = function () {
