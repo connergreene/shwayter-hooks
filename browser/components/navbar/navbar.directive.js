@@ -14,6 +14,7 @@ app.directive('navbar', function ($state, $location, Auth) {
 			scope.isLoggedIn = function () {
 				return Auth.getCurrentUser().then(function(res){
 					console.log("user?", res)
+					return res;
 				});
 			};
 			
