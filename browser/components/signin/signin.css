@@ -2,15 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: -webkit-min-content; }
+  min-width: -webkit-min-content;
+  margin: 10% auto;
+  background-color: black; }
   .signin-container > * {
     width: 33%; }
   .signin-container .local {
-    max-width: 18em;
+    max-width: 30em;
+    background-color: gray;
+    padding: 15px;
+    border-radius: 25px;
     text-align: left; }
 
 @media (max-width: 600px) {
   .signin-container {
     flex-direction: column; }
     .signin-container > * {
-      width: 100%; } }
+      width: 50%; } }
