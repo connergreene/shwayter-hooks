@@ -4,11 +4,12 @@
   justify-content: center;
   min-width: -webkit-min-content;
   margin: 10% auto;
-  background-color: gray; }
+  background-color: black; }
   .signin-container > * {
     width: 33%; }
   .signin-container .local {
     max-width: 18em;
+    background-color: gray;
     text-align: left; }
 
 @media (max-width: 600px) {
