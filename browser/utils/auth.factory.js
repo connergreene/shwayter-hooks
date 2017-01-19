@@ -90,6 +90,15 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope) {
       }
     },
 
+    isLoggedIn: function(){
+      if ($rootScope.user !== {}){
+        return false;
+      }
+      else{
+        return true;
+      }
+    },
+
     requestCurrentUser: function() {
       return $http
         .get('api/users/me')
