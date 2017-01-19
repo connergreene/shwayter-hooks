@@ -8,8 +8,10 @@
   .signin-container > * {
     width: 33%; }
   .signin-container .local {
-    max-width: 18em;
+    max-width: 30em;
     background-color: gray;
+    padding: 15px;
+    border-radius: 25px;
     text-align: left; }
 
 @media (max-width: 600px) {
