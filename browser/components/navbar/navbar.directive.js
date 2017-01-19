@@ -11,7 +11,15 @@ app.directive('navbar', function ($state, $location, Auth) {
 				return path.startsWith(partial);
 			};
 
-			console.log("path", $location.path())
+			scope.isHome = function(){
+				if ($location.path() === '/'){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			
 			scope.isLoggedIn = function () {
 				return Boolean(Auth.getCurrentUser());
 			};
