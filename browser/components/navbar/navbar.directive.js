@@ -12,6 +12,7 @@ app.directive('navbar', function ($state, $location, Auth) {
 			};
 
 			scope.isLoggedIn = Auth.isLoggedIn();
+			console.log("is logged in?", Auth.isLoggedIn())
 			
 			scope.submitLogout = function () {
 				Auth.logout().then(function () {
