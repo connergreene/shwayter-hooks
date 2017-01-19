@@ -91,7 +91,7 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope) {
     },
 
     isLoggedIn: function(){
-      console.log('user', $rootScope.user)
+      console.log('user', getCurrentUser())
       if (!$rootScope.user){
         return false;
       }
