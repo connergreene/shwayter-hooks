@@ -34,6 +34,7 @@ function generateAll () {
             isAdmin: true
         })
     );
+    
     return users;
 }
 
