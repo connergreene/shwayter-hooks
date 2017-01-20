@@ -60,7 +60,9 @@ router.post('/login', function (req, res, next) {
   .then(function (user) {
     if (!user) return next(HttpError(401));
     req.session.userId = user._id;
-    res.json(user);
+    res.json(200).send(
+		user.sanitize()
+	);
   })
  .then(null, next);
 });
