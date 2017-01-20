@@ -29,6 +29,10 @@ var User = new mongoose.Schema({
 	}
 });
 
+User.methods.sanitize = function () {
+    return _.omit(this.toJSON(), ['password', 'salt']);
+};
+
 var generateSalt = function () {
 	return crypto.randomBytes(16).toString('base64');
 };
