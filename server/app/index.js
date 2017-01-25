@@ -5,6 +5,7 @@ var path = require('path');
 var User = require('../api/users/user.model');
 var request = require('request');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var passport = require('passport'); 
@@ -12,6 +13,8 @@ var session = require('express-session');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var MongoStore = require('connect-mongo')(session);
+
+app.use(cookieParser());
 
 app.use(require('./logging.middleware'));
 
