@@ -1,31 +1,42 @@
 'use strict';
 
-var chance = require('chance')(123),
-    _ = require('lodash'),
-    Promise = require('bluebird');
-
-var db = require('./server/db');
+var chance = require('chance')(123);
+var _ = require('lodash');
+var Promise = require('bluebird');
+var chalk = require('chalk');
+var mongoose = require('mongoose');
+var connectToDb = require('./server/db');
 var User = require('./server/api/users/user.model');
 
 
-db.drop = Promise.promisify(db.db.dropDatabase.bind(db.db));
-db.drop();
-var users = [
-    {
-        name: 'Conner Greene',
-        email: 'csg1922@gmail.com',
-        password: 'shnoops',
-        isAdmin: true
-    },
-    {
-        name: 'Ivan Greene',
-        email: 'ivan@pudgeknuckles.com',
-        password: 'shnoops',
-        isAdmin: true
-    }
-];
+connectToDb.then(function () {
 
-return User.create(users)
+    mongoose.connection.db.dropDatabase();
+
+    var users = [
+        {
+             name: 'Conner Greene',
+             email: 'csg1922@gmail.com',
+             password: 'shnoops',
+             isAdmin: true
+         },
+         {
+             name: 'Ivan Greene',
+             email: 'ivan@pudgeknuckles.com',
+             password: 'shnoops',
+             isAdmin: true
+         }
+    ];
+    return User.create(users)
+})
+    .then(function(){
+        console.log(chalk.green('Seed successful!'));
+        process.kill(0);
+    })
+    .catch(function(err){
+        console.error(err);
+        process.kill(1);
+    });
 
 
 
