@@ -21,8 +21,10 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
     getCurrentUser: function (fromServer) {
       console.log("Session user:", Session.user)
       if (this.isAuthenticated() && fromServer !== true) {
-        console.log("happening:")
         return $q.when(Session.user);
+      }
+      else{
+        console.log("happening:")
       }
       // return $http.get('/session')
       //             .then(onSuccessfulLogin)
