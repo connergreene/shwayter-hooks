@@ -55,8 +55,6 @@ app.get('/session', function (req, res) {
 
 var accessToken = process.env['accessToken'];
 
-console.log("uri:", process.env.MONGODB_URI);
-
 //var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
 
 var webhookUrl = 'https://shwayter-hooks.herokuapp.com/events';

@@ -6,7 +6,7 @@ var chalk = require('chalk');
 
 Promise.promisifyAll(mongoose);
 
-var databaseURI = 'mongodb://heroku_96pfxt6w:mhhq6ohhk4k4c16ht12fuv0749@ds159237.mlab.com:59237/heroku_96pfxt6w';
+var databaseURI = process.env['MONGODB_URI'];
 
 var db = mongoose.connect(databaseURI).connection;
 
