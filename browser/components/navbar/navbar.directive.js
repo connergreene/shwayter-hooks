@@ -19,7 +19,6 @@ app.directive('navbar', function ($state, $location, Auth) {
 					return false;
 				}
 			}
-			
 			scope.isLoggedIn = function () {
 				return Boolean(Auth.getCurrentUser());
 			};
