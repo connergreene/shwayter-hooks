@@ -55,7 +55,7 @@ app.get('/session', function (req, res) {
 
 var accessToken = process.env['accessToken'];
 
-console.log("uri:", process.env.MONGOLAB_URI);
+console.log("uri:", process.env);
 
 //var WEBHOOK_SIGNATURE_KEY = 'REPLACE_ME'
 
