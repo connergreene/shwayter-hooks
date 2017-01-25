@@ -25,9 +25,14 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-	User.create(req.body)
-	.then(function (user) {
-		res.status(201).json(user);
+	UserModel.create(req.body)
+		.then(user => {
+			req.logIn(user, function(loginErr) {
+				if (loginErr) return next(loginErr);
+				res.status(200).send(
+					user.sanitize()
+				);
+		});
 	})
 	.then(null, next);
 });
