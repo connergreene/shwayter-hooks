@@ -77,38 +77,75 @@ app.service('Session', function ($rootScope, AUTH_EVENTS) {
 app.run(function($rootScope, Auth, $state){
   // re retrieve user from backend 
   // every time the user refreshes the page;
-	$rootScope.user = {};
-	//Auth.requestCurrentUser();
-	function preventStateChange (message, redirect) {
-		if (redirect) {
-			$state.go(redirect);
-		}
-		else {
-			$state.go('home');
-		}
-	}
+	// $rootScope.user = {};
+	// //Auth.requestCurrentUser();
+	// function preventStateChange (message, redirect) {
+	// 	if (redirect) {
+	// 		$state.go(redirect);
+	// 	}
+	// 	else {
+	// 		$state.go('home');
+	// 	}
+	// }
 
-	$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
-		if (typeof toState.authenticate === 'undefined') {
-			return;
-		}
-		Auth
-		.getCurrentUser()
-		.then(function (currentUser) {
-			var isLoggedIn = !!currentUser._id;
+	// $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState) {
+	// 	if (typeof toState.authenticate === 'undefined') {
+	// 		return;
+	// 	}
+	// 	Auth
+	// 	.getCurrentUser()
+	// 	.then(function (currentUser) {
+	// 		var isLoggedIn = !!currentUser._id;
 
-			var isAuthorized = isLoggedIn && currentUser._id.toString() === toParams.id;
+	// 		var isAuthorized = isLoggedIn && currentUser._id.toString() === toParams.id;
 
-			if (toState.authenticate.loggedOut) { // this route requires you to be logged out
-				if (isLoggedIn) {
-					preventStateChange("You're logged in.");
-				}
-			}
-			else if (!isLoggedIn) {
-				preventStateChange('Must be logged in to access this route.', 'login');
-			}
-		})
-	});
+	// 		if (toState.authenticate.loggedOut) { // this route requires you to be logged out
+	// 			if (isLoggedIn) {
+	// 				preventStateChange("You're logged in.");
+	// 			}
+	// 		}
+	// 		else if (!isLoggedIn) {
+	// 			preventStateChange('Must be logged in to access this route.', 'login');
+	// 		}
+	// 	})
+	// });
+	// The given state requires an authenticated user.
+    var destinationStateRequiresAuth = function (state) {
+        return state.data && state.data.authenticate;
+    };
+
+    // $stateChangeStart is an event fired
+    // whenever the process of changing a state begins.
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+
+        if (!destinationStateRequiresAuth(toState)) {
+            // The destination state does not require authentication
+            // Short circuit with return.
+            return;
+        }
+
+        if (Auth.isAuthenticated()) {
+            // The user is authenticated.
+            // Short circuit with return.
+            return;
+        }
+
+        // Cancel navigating to new state.
+        event.preventDefault();
+
+        Auth.getCurrentUser().then(function (user) {
+            // If a user is retrieved, then renavigate to the destination
+            // (the second time, Auth.isAuthenticated() will work)
+            // otherwise, if no user is logged in, go to "login" state.
+            if (user) {
+                $state.go(toState.name, toParams);
+            } else {
+                $state.go('login');
+            }
+        });
+
+    });
+
 })
 
 
