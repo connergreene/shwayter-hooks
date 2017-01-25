@@ -46,6 +46,7 @@ router.post('/login', function (req, res, next) {
 		req.logIn(user, function (loginErr) {
 			if (loginErr) return next(loginErr);
 			// We respond with a response object that has user with _id and email.
+			console.log("does this hace an id?", user.sanitize())
 			res.status(200).send({
 				user: user.sanitize()
 			});
