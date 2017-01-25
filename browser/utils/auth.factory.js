@@ -7,6 +7,7 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
   function onSuccessfulLogin(response) {
       var data = response.data;
       console.log("this is data:", data);
+      console.log("session id:", data.id);
       Session.create(data.id, data.user);
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
       return data.user;
