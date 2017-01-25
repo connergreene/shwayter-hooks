@@ -13,6 +13,7 @@ app.config(function ($stateProvider) {
 					$scope.$index++;
 				});
  			});
+ 			console.log("current user:", Auth.getCurrentUser());
 		},
 		authenticate: {
 			loggedOut: false  //required to be logged in
