@@ -1,9 +1,9 @@
 'use strict';
 
-var chance = require('chance')(123),
-    _ = require('lodash'),
-    Promise = require('bluebird');
-
+var chance = require('chance')(123);
+var _ = require('lodash');
+var Promise = require('bluebird');
+var chalk = require('chalk');
 var mongoose = require('mongoose');
 var connectToDb = require('./server/db');
 var User = require('./server/api/users/user.model');
