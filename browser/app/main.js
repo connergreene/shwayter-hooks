@@ -111,7 +111,7 @@ app.run(function($rootScope, Auth, $state){
 	// });
 	// The given state requires an authenticated user.
     var destinationStateRequiresAuth = function (state) {
-        return state.data && state.data.authenticate;
+        return state.data && state.data.authenticate.loggedIn;
     };
 
     // $stateChangeStart is an event fired

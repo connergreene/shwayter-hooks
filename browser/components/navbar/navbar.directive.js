@@ -20,7 +20,7 @@ app.directive('navbar', function ($state, $location, Auth) {
 				}
 			}
 			scope.isLoggedIn = function () {
-				return Boolean(Auth.getCurrentUser());
+				return Auth.isAuthenticated();
 			};
 			
 			scope.submitLogout = function () {
