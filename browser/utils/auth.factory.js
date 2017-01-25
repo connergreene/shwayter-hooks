@@ -16,7 +16,7 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
       return !!Session.user;
     },
 
-    getLoggedInUser: function (fromServer) {
+    getCurrentUser: function (fromServer) {
       if (this.isAuthenticated() && fromServer !== true) {
         return $q.when(Session.user);
       }
@@ -25,7 +25,7 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
                   .catch(function () {
                             return null;
                   });
-      },
+    },
 
     login: function (credentials) {
         return $http.post('/auth/login', credentials)
