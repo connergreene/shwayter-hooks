@@ -31,17 +31,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); 
 
-passport.serializeUser(function onLogin(user, attachThisToTheSession){
-    attachThisToTheSession(null, user._id)
+passport.serializeUser(function (user, done){
+    done(null, user.id);
 }); 
 
-passport.deserializeUser(function onEachRequestDoThis(id, bindUserToRequestObject){
-    User.findById(id).exec()
-    .then(function(user){
-      bindUserToRequestObject(null, user); 
-    }, function(err){
-      bindUserToRequestObject(err); 
-    })
+passport.deserializeUser(function (id, done) {
+    User.findById(id, done);
 });
 
 app.get('/session', function (req, res) {
