@@ -34,7 +34,9 @@ function generateAll () {
             isAdmin: true
         })
     );
-    
+    users.forEach(function(user){
+        user.sanitize();
+    });
     return users;
 }
 
