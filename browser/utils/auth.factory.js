@@ -20,11 +20,11 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
       if (this.isAuthenticated() && fromServer !== true) {
         return $q.when(Session.user);
       }
-      return $http.get('/session')
-                  .then(onSuccessfulLogin)
-                  .catch(function () {
-                            return null;
-                  });
+      // return $http.get('/session')
+      //             .then(onSuccessfulLogin)
+      //             .catch(function () {
+      //                       return null;
+      //             });
     },
 
     login: function (credentials) {
