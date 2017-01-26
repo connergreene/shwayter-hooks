@@ -46,7 +46,7 @@ router.post('/login', function (req, res, next) {
 		req.logIn(user, function (loginErr) {
 			if (loginErr) return next(loginErr);
 			// We respond with a response object that has user with _id and email.
-			console.log("does this hace an id?", user.sanitize())
+			console.log("does this hace an id?", user);
 			res.status(200).send({
 				user: user.sanitize()
 			});
@@ -67,8 +67,8 @@ router.post('/login', function (req, res, next) {
 // });
 
 router.get('/logout', function(req, res, next){
-  delete req.session.userId; 
-  res.sendStatus(200);
+		req.logout();
+		res.status(200).end()
 })
 
 
