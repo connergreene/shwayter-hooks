@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
 		templateUrl: '/browser/app/login/login.html',
 		controller: 'LoginCtrl',
 		authenticate: {
-			loggedIn: false
+			loggedIn: true
 		}
 	});
 });
