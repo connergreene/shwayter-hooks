@@ -6,8 +6,6 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
 
   function onSuccessfulLogin(response) {
       var data = response.data;
-      console.log("this is data:", data);
-      console.log("session id:", data.id);
       Session.create(data.id, data.user);
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
       return data.user;
@@ -19,16 +17,13 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
     },
 
     getCurrentUser: function (fromServer) {
-      console.log("Session user:", Session.user)
       if (this.isAuthenticated() && fromServer !== true) {
         return $q.when(Session.user);
-      }
-      else{
-        console.log("happening:")
       }
       return $http.get('/session')
                   .then(onSuccessfulLogin)
                   .catch(function () {
+                          console.log("the happening")
                             return null;
                   });
     },
