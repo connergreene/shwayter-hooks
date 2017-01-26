@@ -26,11 +26,11 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
       else{
         console.log("happening:")
       }
-      // return $http.get('/session')
-      //             .then(onSuccessfulLogin)
-      //             .catch(function () {
-      //                       return null;
-      //             });
+      return $http.get('/session')
+                  .then(onSuccessfulLogin)
+                  .catch(function () {
+                            return null;
+                  });
     },
 
     login: function (credentials) {
