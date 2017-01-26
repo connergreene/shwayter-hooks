@@ -15,7 +15,7 @@ app.config(function ($stateProvider) {
  			});
 		},
 		authenticate: {
-			loggedIn: false  //required to be logged in
+			loggedOut: false  //required to be logged in
 		}
 	});
 });
