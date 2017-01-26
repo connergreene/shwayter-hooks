@@ -96,6 +96,7 @@ app.run(function($rootScope, Auth, $state){
 		.getCurrentUser()
 		.then(function (currentUser) {
 			var isLoggedIn = !!currentUser._id;
+			console.log("currentUser:", currentUser)
 
 			var isAuthorized = isLoggedIn && currentUser._id.toString() === toParams.id;
 
