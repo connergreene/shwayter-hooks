@@ -42,11 +42,8 @@ router.post('/login', function (req, res, next) {
 			return next(error);
 		}
 
-		// req.logIn will establish our session.
 		req.logIn(user, function (loginErr) {
 			if (loginErr) return next(loginErr);
-			// We respond with a response object that has user with _id and email.
-			console.log("does this hace an id?", user);
 			res.status(200).send({
 				user: user.sanitize()
 			});
@@ -55,16 +52,6 @@ router.post('/login', function (req, res, next) {
 
 	passport.authenticate('local', authCb)(req, res, next);
 });
-
-// router.post('/login', function (req, res, next) {
-//   User.findOne(req.body).exec()
-//   .then(function (user) {
-//     if (!user) return next(HttpError(401));
-//     req.session.userId = user._id;
-//     res.json(user);
-//   })
-//  .then(null, next);
-// });
 
 router.get('/logout', function(req, res, next){
 		req.logout();

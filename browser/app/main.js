@@ -5,12 +5,6 @@ var app = angular.module('shwayter', ['ui.router', 'ngCookies']);
 app.config(function ($urlRouterProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$urlRouterProvider.otherwise('/');
-
-  // $urlRouterProvider.when('/auth/:provider', function(){
-  //   window.location.reload(); 
-  // });
-
-
 });
 
 app.constant('AUTH_EVENTS', {
@@ -75,10 +69,7 @@ app.service('Session', function ($rootScope, AUTH_EVENTS) {
 });
 
 app.run(function($rootScope, Auth, $state){
-  // re retrieve user from backend 
-  // every time the user refreshes the page;
-	$rootScope.user = {};
-	//Auth.requestCurrentUser();
+
 	function preventStateChange (message, redirect) {
 		if (redirect) {
 			$state.go(redirect);
@@ -96,8 +87,7 @@ app.run(function($rootScope, Auth, $state){
 		.getCurrentUser()
 		.then(function (currentUser) {
 			var isLoggedIn = !!currentUser._id;
-			console.log("currentUser:", currentUser)
-
+			
 			var isAuthorized = isLoggedIn && currentUser._id.toString() === toParams.id;
 
 			if (toState.authenticate.loggedOut) { // this route requires you to be logged out

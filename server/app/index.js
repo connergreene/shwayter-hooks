@@ -107,6 +107,8 @@ app.post('/events', function(req, res, next){
             var bodyJSON = JSON.parse(body);
             var items = bodyJSON.itemizations;
             var kitchenOrders = [];
+
+            //THIS SECTION IS FOR RETRIEVING THE NAME OF CUSTOMER BUT SQAURE'S API ISN'T WORKING PROPERLY
             // console.log("this is the transaction type:", typeof bodyJSON.payment_url)
             // console.log("payment url:", bodyJSON.payment_url)
             // var transactionId =  bodyJSON.payment_url.split("/").pop(-1);
@@ -149,11 +151,6 @@ app.post('/events', function(req, res, next){
           }
         });        
       }
-  }
-  //test webhook
-  else{
-    console.log(fullOrder);
-    io.emit('order', fullOrder);
   }
   res.end('OK');
 });
