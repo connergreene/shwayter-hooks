@@ -23,8 +23,7 @@ app.factory('Auth', function ($http, $cookies, $q, $rootScope, Session, AUTH_EVE
       return $http.get('/session')
                   .then(onSuccessfulLogin)
                   .catch(function () {
-                          console.log("the happening")
-                            return null;
+                            return $q.when({});
                   });
     },
 
