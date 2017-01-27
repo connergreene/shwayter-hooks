@@ -34,6 +34,9 @@
 }
 
 .top_oval {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color:   #62463b;
   width: 400px;
   height: 100px;
@@ -43,6 +46,9 @@
 }
 
 .bot_oval {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color:   #62463b;
     width: 400px;
     height: 100px;
@@ -53,9 +59,6 @@
 }
 
 .iconDiv{
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-align:center;
   width:100%;
   margin-top:20%;
