@@ -18,3 +18,47 @@
     flex-direction: column; }
     .signin-container > * {
       width: 50%; } }
+
+
+.icon{
+  width:100%;
+  margin-top:20%;
+}
+
+.iconDiv{
+  text-align:center;
+}
+
+.icon .L_oval{
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+   -webkit-transform:translate(10px,0);
+  transform:translate(5px,0);
+}
+
+.icon:hover .L_oval{
+  -webkit-transform:translate(-70px,0);
+  transform:translate(-70px,0);
+}
+
+.icon .R_oval{
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+  transform:translate(-5px,0);
+}
+
+.icon:hover .R_oval{
+  -webkit-transform:translate(70px,0);
+  transform:translate(70px,0);
+}
+
+.icon .text{
+  -webkit-transition:all 0.7s ease-in-out;
+  transition:all 0.7s ease-in-out;
+  fill:white;
+}
+
+.icon:hover .text{
+  fill:black;
+}
+
