@@ -20,7 +20,7 @@
       width: 50%; } }
 
 .top_oval {
-  background-color: saddlebrown;
+  background-color:   #62463b;
   width: 400px;
   height: 100px;
   border-radius: 50% / 100%;
@@ -29,23 +29,24 @@
 }
 
 .bot_oval {
-    background-color: saddlebrown;
+    background-color:   #62463b;
     width: 400px;
     height: 100px;
     border-radius: 50% / 100%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    margin-top: 10 px;
 }
 
+.iconDiv{
+  text-align:center;
+}
 
 /*.icon{
   width:100%;
   margin-top:20%;
 }
 
-.iconDiv{
-  text-align:center;
-}
 
 .icon .L_oval{
   -webkit-transition: 0.5s ease-in;
