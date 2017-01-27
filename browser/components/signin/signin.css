@@ -64,7 +64,7 @@
 
 
 .iconDiv .top_oval{
-  transition: 3s ease-in;
+  transition: 0.5s ease-in;
 }
 
 .iconDiv:hover .top_oval{
