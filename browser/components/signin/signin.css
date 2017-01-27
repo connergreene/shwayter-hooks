@@ -1,6 +1,8 @@
 
 .iconDiv .signin-container {
     display: none;
+    -webkit-transition:all 1.0s ease-in-out;
+    transition:all 1.0s ease-in-out;
 }
 
 
