@@ -10,7 +10,7 @@ var databaseURI = 'mongodb://heroku_96pfxt6w:mhhq6ohhk4k4c16ht12fuv0749@ds159237
 
 
 
-var db = mongoose.connect(databaseURI).connection;
+var db = mongoose.connect(process.env['MONGODB_URI']).connection;
 
 var startDbPromise = new Promise(function (resolve, reject) {
     db.on('open', resolve);
