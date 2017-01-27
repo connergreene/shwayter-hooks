@@ -12,18 +12,12 @@
   -webkit-transition:all 0.7s ease-in-out;
   transition:all 0.7s ease-in-out;
   background-color: black; }
-  .signin-container > * {
-     }
-  .signin-container .local {
+
+.signin-container .local {
     background-color: gray;
     border-radius: 25px;
-    text-align: left; }
-
-@media (max-width: 600px) {
-  .signin-container {
-    flex-direction: column; }
-    .signin-container > * {
-      width: 50%; } }
+    text-align: left; 
+  }
 
 .top_oval {
   background-color:   #62463b;
