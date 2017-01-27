@@ -19,8 +19,26 @@
     .signin-container > * {
       width: 50%; } }
 
+.top_oval {
+  background-color: saddlebrown;
+  width: 400px;
+  height: 100px;
+  border-radius: 50% / 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
 
-.icon{
+.bot_oval {
+    background-color: saddlebrown;
+    width: 400px;
+    height: 100px;
+    border-radius: 50% / 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+
+/*.icon{
   width:100%;
   margin-top:20%;
 }
@@ -60,5 +78,5 @@
 
 .icon:hover .text{
   fill:black;
-}
+}*/
 
