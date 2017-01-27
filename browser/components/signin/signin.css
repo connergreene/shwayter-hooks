@@ -35,49 +35,47 @@
     border-radius: 50% / 100%;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    margin-top: 10 px;
+    margin-top: 5px;
 }
 
 .iconDiv{
   text-align:center;
-}
-
-/*.icon{
   width:100%;
   margin-top:20%;
 }
 
 
-.icon .L_oval{
+
+.iconDiv .top_oval{
   -webkit-transition: 0.5s ease-in;
   transition: 0.5s ease-in;
    -webkit-transform:translate(10px,0);
   transform:translate(5px,0);
 }
 
-.icon:hover .L_oval{
+.iconDiv:hover .top_oval{
   -webkit-transform:translate(-70px,0);
   transform:translate(-70px,0);
 }
 
-.icon .R_oval{
+.iconDiv .bot_oval{
   -webkit-transition: 0.5s ease-in;
   transition: 0.5s ease-in;
   transform:translate(-5px,0);
 }
 
-.icon:hover .R_oval{
+.iconDiv:hover .bot_oval{
   -webkit-transform:translate(70px,0);
   transform:translate(70px,0);
 }
 
-.icon .text{
+.iconDiv .text{
   -webkit-transition:all 0.7s ease-in-out;
   transition:all 0.7s ease-in-out;
   fill:white;
 }
 
-.icon:hover .text{
+.iconDiv:hover .text{
   fill:black;
-}*/
+}
 
