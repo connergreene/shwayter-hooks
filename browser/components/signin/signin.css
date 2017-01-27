@@ -1,7 +1,7 @@
 
 .title{
     color: white;
-    margin-top: 50px;
+    margin-top: 40px;
     background-color: black;
     display: flex;
     align-items: center;
@@ -9,6 +9,14 @@
     font-size: 70px;
 }
 
+.subtitle{
+    background-color: black;
+    color: burlywood;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
 
 .iconDiv .signin-container {
     display: none;
