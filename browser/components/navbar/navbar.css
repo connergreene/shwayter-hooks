@@ -1,7 +1,8 @@
 .navbar {
   border: none;
   border-radius: 0;
-  border-bottom: 1px dotted #777; }
+  border-bottom: 1px dotted #777;
+  background-color: #9f7560; }
   .navbar .navbar-nav .active > a {
     background: transparent;
     position: relative; }
