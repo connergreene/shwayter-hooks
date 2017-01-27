@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   min-width: -webkit-min-content;
-  margin: 10% auto;
   background-color: black; }
   .signin-container > * {
     width: 33%; }
