@@ -69,7 +69,8 @@ var options = {
     url: 'https://connect.squareup.com/v1/me/webhooks',
     headers: headers,
     body : "[\"PAYMENT_UPDATED\"]"
-}
+};
+
 //give webhook permissions
 request.put(options, function(error, res, body) {
     if (error) {

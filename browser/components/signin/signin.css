@@ -1,21 +1,100 @@
-.signin-container {
+
+.title{
+    color: white;
+    margin-top: 40px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+}
+
+.subtitle{
+    background-color: black;
+    color: burlywood;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.iconDiv .signin-container {
+    display: none;
+    -webkit-transition:all 1.0s ease-in-out;
+    transition-delay: 1s;
+    transition:all 1.0s ease-in-out;
+}
+
+
+.iconDiv:hover .signin-container {
+  transition-delay: 1s;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: -webkit-min-content;
-  margin: 10% auto;
-  background-color: black; }
-  .signin-container > * {
-    width: 33%; }
-  .signin-container .local {
-    max-width: 30em;
-    background-color: gray;
-    padding: 15px;
-    border-radius: 25px;
-    text-align: left; }
+  margin: -80px;
+  -webkit-transition:all 1.0s ease-in-out;
+  transition:all 1.0s ease-in-out;
+  background-color: black; 
+}
 
-@media (max-width: 600px) {
-  .signin-container {
-    flex-direction: column; }
-    .signin-container > * {
-      width: 50%; } }
+.signin-container .local {
+    height:100%;
+    width: 70%;
+    text-align: left; 
+}
+
+.top_oval {
+  background-color:   #62463b;
+  width: 500px;
+  height: 150px;
+  border-radius: 50% / 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.bot_oval {
+    background-color:   #62463b;
+    width: 500px;
+    height: 150px;
+    border-radius: 50% / 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 5px;
+}
+
+.iconDiv{
+  text-align:center;
+  background-color: black;
+  position: fixed;
+  top: 25em;
+  left: 47%;
+  margin-top: -8em;
+  margin-left: -15em;
+}
+
+
+.iconDiv .top_oval{
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+}
+
+.iconDiv:hover .top_oval{
+  -webkit-transform:translate(0,-70px);
+  transform:translate(0,-70px);
+}
+
+.iconDiv .bot_oval{
+  -webkit-transition: 0.5s ease-in;
+  transition: 0.5s ease-in;
+}
+
+.iconDiv:hover .bot_oval{
+  -webkit-transform:translate(0,70px);
+  transform:translate(0,70px);
+}
+
+
+
+
+>>>>>>> 0ad044f02e12c7e83eaf4d27db6f31b7a32b30ae
