@@ -34,9 +34,6 @@
 }
 
 .top_oval {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color:   #62463b;
   width: 400px;
   height: 100px;
@@ -46,9 +43,6 @@
 }
 
 .bot_oval {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color:   #62463b;
     width: 400px;
     height: 100px;
@@ -68,12 +62,9 @@
   margin-left: -15em;
 }
 
-.body
-
-
 
 .iconDiv .top_oval{
-  transition: 0.5s ease-in;
+  transition: 3s ease-in;
 }
 
 .iconDiv:hover .top_oval{
