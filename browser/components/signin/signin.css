@@ -5,8 +5,7 @@
   min-width: -webkit-min-content;
   -webkit-transition:all 0.7s ease-in-out;
   transition:all 0.7s ease-in-out;
-  fill:white;
-  background-color: black; }
+  fill:white; }
   .signin-container > * {
     width: 33%; }
   .signin-container .local {
