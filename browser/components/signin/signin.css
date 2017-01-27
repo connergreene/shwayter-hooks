@@ -8,16 +8,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: -webkit-min-content;*/
+  min-width: -webkit-min-content;
   -webkit-transition:all 0.7s ease-in-out;
   transition:all 0.7s ease-in-out;
   background-color: black; }
   .signin-container > * {
-    width: 33%; }
+     }
   .signin-container .local {
-    max-width: 30em;
     background-color: gray;
-    padding: 15px;
     border-radius: 25px;
     text-align: left; }
 
@@ -26,15 +24,6 @@
     flex-direction: column; }
     .signin-container > * {
       width: 50%; } }
-
-
-
-.iconDiv .text{
-  -webkit-transition:all 0.7s ease-in-out;
-  transition:all 0.7s ease-in-out;
-  fill:white;
-}
-
 
 .top_oval {
   background-color:   #62463b;
