@@ -51,8 +51,8 @@
 }
 
 .iconDiv:hover .top_oval{
-  -webkit-transform:translate(0,70px);
-  transform:translate(0,70px);
+  -webkit-transform:translate(0,-70px);
+  transform:translate(0,-70px);
 }
 
 .iconDiv .bot_oval{
@@ -60,8 +60,8 @@
 }
 
 .iconDiv:hover .bot_oval{
-  -webkit-transform:translate(0,-70px);
-  transform:translate(0,-70px);
+  -webkit-transform:translate(0,70px);
+  transform:translate(0,70px);
 }
 
 .iconDiv .text{
