@@ -5,8 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "seed": "node seed",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "seed": "node seed"
   },
   "author": "",
   "license": "ISC",
