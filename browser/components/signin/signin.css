@@ -1,14 +1,14 @@
 .iconDiv:hover .signin-container {
-  display: flex;
+  /*display: flex;
   align-items: center;
   justify-content: center;
-  min-width: -webkit-min-content;
+  min-width: -webkit-min-content;*/
   -webkit-transition:all 0.7s ease-in-out;
   transition:all 0.7s ease-in-out;
   background-color: black; }
-  .iconDiv:hover .signin-container > * {
+  /*.signin-container > * {
     width: 33%; }
-  .iconDiv:hover .signin-container .local {
+  .signin-container .local {
     max-width: 30em;
     background-color: gray;
     padding: 15px;
@@ -16,14 +16,14 @@
     text-align: left; }
 
 @media (max-width: 600px) {
-  .iconDiv:hover .signin-container {
+  .signin-container {
     flex-direction: column; }
-    .iconDiv:hover .signin-container > * {
-      width: 50%; } }
+    .signin-container > * {
+      width: 50%; } }*/
 
-/*.iconDiv:hover .signin-container{
+.iconDiv:hover .signin-container{
   fill:black;
-}*/
+}
 
 .top_oval {
   background-color:   #62463b;
