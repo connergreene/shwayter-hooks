@@ -10,15 +10,13 @@
   justify-content: center;
   min-width: -webkit-min-content;
   margin: -80px;
-  -webkit-transition:all 0.7s ease-in-out;
-  transition:all 0.7s ease-in-out;
+  -webkit-transition:all 1.0s ease-in-out;
+  transition:all 1.0s ease-in-out;
   background-color: black; }
 
 .signin-container .local {
     height:100%;
     width: 70%;
-    background-color: gray;
-    border-radius: 25px;
     text-align: left; 
   }
 
