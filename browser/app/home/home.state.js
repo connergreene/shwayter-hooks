@@ -9,9 +9,9 @@ app.config(function ($stateProvider) {
 			$scope.tickets = [];
 			$scope.counter = 0;
 			socket.on('order', function (order) {
+				$scope.counter++;
 				$scope.$apply(function(){
 					$scope.tickets.push(order);
-					$scope.counter++;
 				});
  			});
 			if($scope.counter === 0){
