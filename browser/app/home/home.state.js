@@ -14,6 +14,7 @@ app.config(function ($stateProvider) {
 					$scope.tickets.push(order);
 				});
  			});
+ 			console.log($scope.counter)
 			if($scope.counter === 0){
  				document.title = "Shwayter"
  			}
