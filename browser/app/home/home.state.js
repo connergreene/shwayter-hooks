@@ -13,7 +13,7 @@ app.config(function ($stateProvider) {
 					$scope.$index++;
 				});
  			});
- 			console.log("title", $rootScope.title)
+ 			console.log("title", document.title)
 		},
 		authenticate: {
 			loggedOut: false  //required to be logged in
