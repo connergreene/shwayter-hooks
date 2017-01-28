@@ -9,16 +9,16 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		link: function (scope, element, attrs) {
 
 			var titleChange = function(){
-				if(scope.counter === 0){
-	 				document.title = "Shwayter"
+				if(scope.counter > 0){
+	 				document.title = "Shwayter(" + scope.counter + ")";
 	 			}
 	 			else{
-	 				document.title = "Shwayter(" + scope.counter + ")";
+	 				document.title = "Shwayter"
 	 			}
 			}
 
 			titleChange();
-			
+
 			//time stamp
 			var time = new Date();
 			scope.time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
