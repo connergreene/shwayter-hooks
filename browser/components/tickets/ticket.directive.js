@@ -8,13 +8,17 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
       	},
 		link: function (scope, element, attrs) {
 
-			if(scope.counter === 0){
- 				document.title = "Shwayter"
- 			}
- 			else{
- 				document.title = "Shwayter(" + scope.counter + ")";
- 			}
+			var titleChange = function(){
+				if(scope.counter === 0){
+	 				document.title = "Shwayter"
+	 			}
+	 			else{
+	 				document.title = "Shwayter(" + scope.counter + ")";
+	 			}
+			}
 
+			titleChange();
+			
 			//time stamp
 			var time = new Date();
 			scope.time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
@@ -39,6 +43,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 			scope.remove = function() {
                 element.html('');
                 scope.counter--;
+                titleChange();
                 $interval.cancel(time);
             };
 			
