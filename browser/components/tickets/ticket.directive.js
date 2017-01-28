@@ -12,7 +12,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
  				document.title = "Shwayter"
  			}
  			else{
- 				document.title = "Shwayter(" + $scope.counter + ")";
+ 				document.title = "Shwayter(" + scope.counter + ")";
  			}
 
 			//time stamp
