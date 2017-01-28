@@ -1,10 +1,10 @@
 'use strict';
 
-app.config(function ($stateProvider, $rootScope) {
+app.config(function ($stateProvider) {
 	$stateProvider.state('home', {
 		url: '/kds',
 		templateUrl: '/browser/app/home/home.html',
-		controller: function($scope, $http, $state, Auth){
+		controller: function($scope, $http, $state, $rootScope, Auth){
 			var socket = io.connect();
 			$scope.tickets = [];
 			socket.on('order', function (order) {
