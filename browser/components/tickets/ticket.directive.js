@@ -3,9 +3,18 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		restrict: 'E',
 		templateUrl: '/browser/components/tickets/ticket.html',
 		scope: {
-         order: '='
+         order: '=',
+         counter: '='
       	},
 		link: function (scope, element, attrs) {
+
+			if(scope.counter === 0){
+ 				document.title = "Shwayter"
+ 			}
+ 			else{
+ 				document.title = "Shwayter(" + $scope.counter + ")";
+ 			}
+
 			//time stamp
 			var time = new Date();
 			scope.time = time.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });

@@ -12,12 +12,6 @@ app.config(function ($stateProvider) {
 				$scope.counter++;
 				$scope.$apply(function(){
 					$scope.tickets.push(order);
-					if($scope.counter === 0){
-		 				document.title = "Shwayter"
-		 			}
-		 			else{
-		 				document.title = "Shwayter(" + $scope.counter + ")";
-		 			}
 				});
  			});
 		},
