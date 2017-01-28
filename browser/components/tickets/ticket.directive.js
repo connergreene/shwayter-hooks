@@ -9,8 +9,8 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 		link: function (scope, element, attrs) {
 
 			var titleChange = function(){
-				if(scope.counter > 0){
-	 				document.title = "Shwayter(" + scope.counter + ")";
+				if(scope.counter.count > 0){
+	 				document.title = "Shwayter(" + scope.counter.count + ")";
 	 			}
 	 			else{
 	 				document.title = "Shwayter"
@@ -42,9 +42,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 
 			scope.remove = function() {
                 element.html('');
-                scope.$apply(function(){
-					scope.counter--;
-				});
+				scope.counter.count--;
                 titleChange();
                 $interval.cancel(time);
             };

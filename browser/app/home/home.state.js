@@ -7,9 +7,9 @@ app.config(function ($stateProvider) {
 		controller: function($scope, $http, $state, $rootScope, Auth){
 			var socket = io.connect();
 			$scope.tickets = [];
-			$scope.counter=0;
+			$scope.counter= {count: 0};
 			socket.on('order', function (order) {
-				$scope.counter++;
+				$scope.counter.count++;
 				$scope.$apply(function(){
 					$scope.tickets.push(order);
 				});
