@@ -10,7 +10,7 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 
 			var titleChange = function(){
 				if(scope.counter.count > 0){
-	 				document.title = "Shwayter(" + scope.counter.count + ")";
+	 				document.title = "(" + scope.counter.count + ") Shwayter";
 	 			}
 	 			else{
 	 				document.title = "Shwayter"
