@@ -42,7 +42,9 @@ app.directive('ticket', function ($state, $location, $interval, Auth) {
 
 			scope.remove = function() {
                 element.html('');
-                scope.counter--;
+                scope.$apply(function(){
+					scope.counter--;
+				});
                 titleChange();
                 $interval.cancel(time);
             };
