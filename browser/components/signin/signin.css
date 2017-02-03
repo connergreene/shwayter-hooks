@@ -21,13 +21,14 @@
 .iconDiv .signin-container {
     display: none;
     -webkit-transition:all 1.0s ease-in-out;
-    transition-delay: 1s;
+    -webkit-transition-delay: 1s;
     transition:all 1.0s ease-in-out;
 }
 
 
 .iconDiv:hover .signin-container {
   transition-delay: 1s;
+  -webkit-transition-delay: 1s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,7 +95,3 @@
   transform:translate(0,70px);
 }
 
-
-
-
->>>>>>> 0ad044f02e12c7e83eaf4d27db6f31b7a32b30ae
